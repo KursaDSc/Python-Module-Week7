@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>fr_mentor</class>
+ <widget class="QWidget" name="fr_mentor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>735</width>
+    <height>505</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Mentor Interview</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Genel çerçeve */
+
+QWidget {
+    background-color: #079af5; /* Deniz mavisi koyu ton */
+    color: white;
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 14px;
+}
+
+/* QLabel (Logo ve başlıklar için) */
+QLabel {
+    background-color: transparent;  /* Tam şeffaf */
+    color: white;
+}
+
+/* QPushButton */
+QPushButton {
+    background-color: #079af5; /* Widget arka planından biraz daha açık deniz mavisi */
+    color: white;
+    border-radius: 6px;
+    padding: 6px 12px;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #007ab8; /* Hover için biraz daha parlak */
+}
+
+QPushButton:pressed {
+    background-color: #004a68; /* Basılı halde koyu ton */
+}
+
+/* QLineEdit */
+QLineEdit {
+    background-color: #eaf6fb; /* Ana rengin beyaza çok yakın tonu */
+    border: 1px solid #005f86;
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: #000000;
+}
+
+/* QComboBox */
+QComboBox {
+    background-color: #eaf6fb; /* Textbox ile aynı */
+    color: #000000;
+    border: 1px solid #005f86;
+    border-radius: 4px;
+    padding: 4px 8px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left: 1px solid #005f86;
+}
+
+
+
+/* QTableWidget veya QTableView */
+QTableWidget, QTableView {
+    background-color: #eaf6fb; /* Ana renkle uyumlu açık deniz mavisi ton */
+    color: white;
+    gridline-color: #005f86;
+    selection-background-color: #00aaff;
+    selection-color: black;
+    alternate-background-color: #0095cc;
+}
+
+/* Tablo veri alanları */
+QTableWidget QTableCornerButton::section,
+QHeaderView::section {
+    background-color: #079af5; /* Header daha açık deniz mavisi */
+    color: white;
+    font-weight: bold; 
+    padding: 4px;
+    border: none;
+}
+
+
+/* Frame */
+QFrame {
+    background-color: #58b9f5; /* Belirgin, orta açık deniz mavisi */
+    border: none;
+}
+
+/* Scrollbar (isteğe bağlı) */
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: #003f5c;
+    width: 10px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #005f86;
+    border-radius: 5px;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 75 16pt &quot;Segoe UI&quot;;
+color : #000000;
+</string>
+     </property>
+     <property name="text">
+      <string>Mentor Meeting</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLineEdit" name="lineEdit">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>32</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>32</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pb_Search">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>3</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>🔍 Search</string>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QPushButton" name="pb_All_App">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>3</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>🗂️ All Applications</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="maximumSize">
+              <size>
+               <width>90</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Segoe UI</family>
+               <pointsize>-1</pointsize>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Preferences :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cb_Decision">
+             <property name="minimumSize">
+              <size>
+               <width>250</width>
+               <height>0</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>VIT Projesinin Tamamına Katılması Uygun Olur</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>VIT Projesini ile IT Eğitimi Alanına Yönlendirilmesi</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="tbl_App">
+        <property name="tabletTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTableWidget {
+    background-color: #eaf6fb; /* veya örnek: #f0f0f0 (açık gri) */
+    color: black;
+    gridline-color: #005f86;
+    alternate-background-color: #f9f9f9;
+}</string>
+        </property>
+        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>ID</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QPushButton" name="pb_Back">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>3</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>🔙 Back to Preferences</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pb_Exit">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>3</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>❌ Exit</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>pb_Search</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>cb_Decision</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
