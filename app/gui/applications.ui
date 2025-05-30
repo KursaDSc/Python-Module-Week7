@@ -144,10 +144,16 @@ color: rgb(0, 0, 0);</string>
          </item>
          <item>
           <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Maximum</enum>
+           </property>
            <property name="sizeHint" stdset="0">
             <size>
              <width>400</width>
-             <height>20</height>
+             <height>30</height>
             </size>
            </property>
           </spacer>
@@ -785,6 +791,9 @@ QPushButton:pressed {
          </item>
          <item>
           <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
            <property name="sizeType">
             <enum>QSizePolicy::Fixed</enum>
            </property>
