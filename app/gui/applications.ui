@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>883</width>
+    <width>901</width>
     <height>761</height>
    </rect>
   </property>
@@ -89,7 +89,7 @@ QComboBox::down-arrow {
     <item>
      <widget class="QFrame" name="frame">
       <property name="layoutDirection">
-       <enum>Qt::LayoutDirection::LeftToRight</enum>
+       <enum>Qt::LeftToRight</enum>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:0, stop:0 rgba(252, 191, 36, 255), stop:1 rgba(255, 255, 255, 255));</string>
@@ -111,7 +111,7 @@ color: rgb(0, 0, 0);</string>
           <string>Applications</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -132,7 +132,7 @@ color: rgb(0, 0, 0);</string>
             <string/>
            </property>
            <property name="textFormat">
-            <enum>Qt::TextFormat::PlainText</enum>
+            <enum>Qt::PlainText</enum>
            </property>
            <property name="pixmap">
             <pixmap>../../resorces/logo.png</pixmap>
@@ -145,12 +145,15 @@ color: rgb(0, 0, 0);</string>
          <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Maximum</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
              <width>400</width>
-             <height>20</height>
+             <height>30</height>
             </size>
            </property>
           </spacer>
@@ -186,8 +189,9 @@ font: italic 8pt &quot;Arial&quot;;
           <widget class="QPushButton" name="pushButton_search_2">
            <property name="font">
             <font>
-             <family>Segoe UI</family>
+             <family>Segoe UI,sans-serif</family>
              <pointsize>-1</pointsize>
+             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -224,8 +228,9 @@ QPushButton:pressed {
           <widget class="QPushButton" name="pushButton_mentormeetinundefined">
            <property name="font">
             <font>
-             <family>Segoe UI</family>
+             <family>Segoe UI,sans-serif</family>
              <pointsize>-1</pointsize>
+             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -258,8 +263,9 @@ QPushButton:pressed {
           <widget class="QPushButton" name="pushButton_mentormeetingdefined">
            <property name="font">
             <font>
-             <family>Segoe UI</family>
+             <family>Segoe UI,sans-serif</family>
              <pointsize>-1</pointsize>
+             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -292,8 +298,9 @@ QPushButton:pressed {
           <widget class="QPushButton" name="pushButton_allaplication">
            <property name="font">
             <font>
-             <family>Segoe UI</family>
+             <family>Segoe UI,sans-serif</family>
              <pointsize>-1</pointsize>
+             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -326,8 +333,9 @@ QPushButton:pressed {
           <widget class="QPushButton" name="pushButton_vit7records">
            <property name="font">
             <font>
-             <family>Segoe UI</family>
+             <family>Segoe UI,sans-serif</family>
              <pointsize>-1</pointsize>
+             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -450,15 +458,6 @@ QPushButton:pressed {
               </gradient>
              </brush>
             </colorrole>
-            <colorrole role="PlaceholderText">
-             <brush brushstyle="SolidPattern">
-              <color alpha="128">
-               <red>43</red>
-               <green>43</green>
-               <blue>43</blue>
-              </color>
-             </brush>
-            </colorrole>
            </active>
            <inactive>
             <colorrole role="WindowText">
@@ -548,15 +547,6 @@ QPushButton:pressed {
               </gradient>
              </brush>
             </colorrole>
-            <colorrole role="PlaceholderText">
-             <brush brushstyle="SolidPattern">
-              <color alpha="128">
-               <red>43</red>
-               <green>43</green>
-               <blue>43</blue>
-              </color>
-             </brush>
-            </colorrole>
            </inactive>
            <disabled>
             <colorrole role="WindowText">
@@ -644,15 +634,6 @@ QPushButton:pressed {
                 </color>
                </gradientstop>
               </gradient>
-             </brush>
-            </colorrole>
-            <colorrole role="PlaceholderText">
-             <brush brushstyle="SolidPattern">
-              <color alpha="128">
-               <red>43</red>
-               <green>43</green>
-               <blue>43</blue>
-              </color>
              </brush>
             </colorrole>
            </disabled>
@@ -777,8 +758,9 @@ QTableCornerButton::section {
            </property>
            <property name="font">
             <font>
-             <family>Segoe UI</family>
+             <family>Segoe UI,sans-serif</family>
              <pointsize>-1</pointsize>
+             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -810,10 +792,10 @@ QPushButton:pressed {
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
-            <enum>Qt::Orientation::Vertical</enum>
+            <enum>Qt::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Policy::Fixed</enum>
+            <enum>QSizePolicy::Fixed</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -833,8 +815,9 @@ QPushButton:pressed {
            </property>
            <property name="font">
             <font>
-             <family>Segoe UI</family>
+             <family>Segoe UI,sans-serif</family>
              <pointsize>-1</pointsize>
+             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
