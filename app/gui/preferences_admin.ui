@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>480</height>
+    <height>380</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>640</width>
-    <height>480</height>
+    <height>380</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -61,7 +61,7 @@ color: #004d00;
 </string>
        </property>
        <property name="text">
-        <string>Admin Preferences Menu</string>
+        <string>Preferences Menu - Admin</string>
        </property>
       </widget>
      </item>
@@ -127,7 +127,7 @@ color: #004d00;
                     background-color: #ccffcc;
                     border-radius: 10px;
                     padding: 10px;
-                    font-size: 14px;
+                    font-size: 20px;
                     color: #004d00;
                 }
                 QPushButton:hover {
@@ -163,7 +163,7 @@ color: #004d00;
                     background-color: #ccffcc;
                     border-radius: 10px;
                     padding: 10px;
-                    font-size: 14px;
+                    font-size: 20px;
                     color: #004d00;
                 }
                 QPushButton:hover {
@@ -204,7 +204,7 @@ color: #004d00;
                     background-color: #ccffcc;
                     border-radius: 10px;
                     padding: 10px;
-                    font-size: 14px;
+                    font-size: 20px;
                     color: #004d00;
                 }
                 QPushButton:hover {
@@ -240,7 +240,7 @@ color: #004d00;
                     background-color: #ccffcc;
                     border-radius: 10px;
                     padding: 10px;
-                    font-size: 14px;
+                    font-size: 20px;
                     color: #004d00;
                 }
                 QPushButton:hover {
@@ -299,7 +299,7 @@ color: #004d00;
             </string>
           </property>
           <property name="text">
-           <string>🔙 Return to Preferences‑Admin Screen</string>
+           <string>🔙 Back</string>
           </property>
          </widget>
         </item>
