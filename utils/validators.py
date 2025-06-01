@@ -13,7 +13,6 @@ def validate_user(input_username, input_password):
         input_username = input_username.strip()
         input_password = input_password.strip()
         sheet = GOOGLE_SHEETS["users"]
-        print(f"Doğrulama için sheet bilgisi: {sheet}")
         users = sheet_service.read_data(sheet["sheet_id"], sheet["ranges"])
 
         for user in users:

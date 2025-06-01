@@ -20,5 +20,5 @@ _tests.py
 cookie.json
 /venv*/
 /Venv*/
-
+.env
 credentials.json
