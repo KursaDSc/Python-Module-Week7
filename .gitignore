@@ -1,0 +1,24 @@
+# Python projesi için .gitignore dosyası
+
+# Tüm pyc, pyo, pyd dosyalarını ignore et
+*.py[cod]
+
+# __pycache__ klasörlerini ignore et (her seviyede)
+__pycache__/
+**/__pycache__/
+
+# .DS_Store ve benzeri sistem dosyaları (opsiyonel)
+.DS_Store
+
+**/themes/
+x.ipynb
+
+*.ini
+*.sh
+.vscode/settings.json
+_tests.py
+cookie.json
+/venv*/
+/Venv*/
+
+credentials.json

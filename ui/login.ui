@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>wd_login</class>
+ <widget class="QWidget" name="wd_login">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>350</width>
+    <height>360</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>350</width>
+    <height>360</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>350</width>
+    <height>360</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Login</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Genel QWidget arka plan */
+QWidget {
+    background-color: #f2f2f2;  /* Açık gri */
+    color: #2c2c2c;             /* Koyu gri metin */
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 14px;
+}
+
+/* QPushButton */
+QPushButton {
+    background-color: #e0e0e0;
+    color: #2c2c2c;
+    border: 1px solid #bfbfbf;
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+QPushButton:hover {
+    background-color: #d5d5d5;
+}
+
+QPushButton:pressed {
+    background-color: #c2c2c2;
+    border: 1px solid #999999;
+}
+
+/* QLineEdit */
+QLineEdit {
+    background-color: #ffffff;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: #2c2c2c;
+}
+
+/* Frame'ler */
+QFrame {
+	border-radius: 20px;
+    background-color: #f7f7f7;
+    border: none;
+}
+
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="frame_2">
+     <property name="styleSheet">
+      <string notr="true">/* Genel çerçeve */
+QFrame {
+    background-color: #aaaaaa;  /* koyu siyah/gri */
+    border-radius: 15px;
+}
+
+/* Düğmeler - Normal görünüm */
+QPushButton {
+    background-color: #da1e3c;  /* koyu kırmızı (firebrick) */
+    border-radius: 10px;
+    padding: 2px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #f0f0f0;
+}
+
+/* Düğmeler - Hover (üzerine gelince) */
+QPushButton:hover {
+    background-color: #d32f2f;  /* açık kırmızı */
+    color: #ffffff;
+}
+
+/* Düğmeler - Tıklanmış hali */
+QPushButton:pressed {
+    background-color: #a10000;
+    color: #dddddd;
+}
+
+/* Etiketler */
+QLabel {
+    font-size: 13px;
+    color: #da1e3c;
+}
+
+/* Yazı kutuları */
+QLineEdit {
+    background-color: #ffffff;
+    border: 1px solid #555555;
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 13px;
+    color: #000000;
+}
+
+QCheckBox{
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 2px;
+    font-size: 13px;
+    color: #000000;
+}
+
+/* ComboBox */
+QComboBox {
+    background-color: #2e2e2e;
+    border: 1px solid #666666;
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 13px;
+    color: #f0f0f0;
+}
+
+/* ComboBox açılır oka özel */
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left: 1px solid #555555;
+    background-color: #3a3a3a;
+}
+
+/* ScrollBar dikey (isteğe bağlı) */
+QScrollBar:vertical {
+    background: #2a2a2a;
+    width: 12px;
+    margin: 0px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background: #b22222;
+    border-radius: 6px;
+}
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <widget class="QCheckBox" name="showPasswordCheckBox">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>150</y>
+        <width>123</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Show password</string>
+      </property>
+      <property name="toolTipDuration">
+       <number>-1</number>
+      </property>
+      <property name="text">
+       <string>Show password</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>8</width>
+        <height>8</height>
+       </size>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+R</string>
+      </property>
+      <property name="tristate">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>55</x>
+        <y>19</y>
+        <width>200</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../resorces/logo.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="errorlabel">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>240</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: red;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="exitButton">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>280</y>
+        <width>110</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>110</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>❌ Exit</string>
+      </property>
+      <property name="autoRepeatDelay">
+       <number>301</number>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="loginButton">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>190</y>
+        <width>261</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>🔐 Login</string>
+      </property>
+      <property name="autoRepeatDelay">
+       <number>301</number>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="passwordField">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>145</y>
+        <width>133</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::EchoMode::Password</enum>
+      </property>
+      <property name="placeholderText">
+       <string>password</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="usernameField">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>100</y>
+        <width>133</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>username</string>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

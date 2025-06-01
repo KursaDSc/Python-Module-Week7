@@ -135,7 +135,7 @@ QPushButton:pressed {
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="suornhButton">
+         <widget class="QPushButton" name="email_button">
           <property name="styleSheet">
            <string notr="true">QPushButton {
     background-color: #6f56b0;
@@ -395,6 +395,9 @@ QTableWidget {
     border: none;
 }</string>
         </property>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>116</number>
+        </attribute>
         <column>
          <property name="text">
           <string>Etkinlik Adı</string>

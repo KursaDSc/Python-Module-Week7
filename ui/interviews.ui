@@ -784,7 +784,7 @@ font: 16pt &quot;Segoe UI&quot;;
            <enum>Qt::TextFormat::AutoText</enum>
           </property>
           <property name="pixmap">
-           <pixmap>../../resorces/logo.png</pixmap>
+           <pixmap>../resorces/logo.png</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>

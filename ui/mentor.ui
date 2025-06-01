@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>fr_mentor</class>
  <widget class="QWidget" name="fr_mentor">
+  <property name="windowModality">
+   <enum>Qt::WindowModality::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>461</height>
+    <width>846</width>
+    <height>623</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -146,7 +149,7 @@ background-color: #079af5;
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>../../resorces/logo.png</pixmap>
+        <pixmap>../resorces/logo.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -214,7 +217,7 @@ background-color: #079af5;
       <item>
        <layout class="QGridLayout" name="gridLayout">
         <item row="2" column="0" colspan="2">
-         <widget class="QPushButton" name="pb_All_App">
+         <widget class="QPushButton" name="pb_all">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -233,7 +236,7 @@ background-color: #079af5;
          </widget>
         </item>
         <item row="2" column="3" alignment="Qt::AlignmentFlag::AlignRight">
-         <widget class="QComboBox" name="cb_Decision">
+         <widget class="QComboBox" name="cb_decision">
           <property name="minimumSize">
            <size>
             <width>250</width>
@@ -259,7 +262,7 @@ background-color: #079af5;
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QLineEdit" name="lineEdit">
+         <widget class="QLineEdit" name="le_search">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -272,10 +275,13 @@ background-color: #079af5;
             <height>32</height>
            </size>
           </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QPushButton" name="pb_Search">
+         <widget class="QPushButton" name="pb_search">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -329,6 +335,12 @@ background-color: #079af5;
       </item>
       <item>
        <widget class="QTableWidget" name="tbl_App">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>805</height>
+         </size>
+        </property>
         <property name="tabletTracking">
          <bool>false</bool>
         </property>
@@ -342,6 +354,9 @@ background-color: #079af5;
     selection-color: black;
 </string>
         </property>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>130</number>
+        </attribute>
         <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
          <bool>false</bool>
         </attribute>
@@ -349,40 +364,40 @@ background-color: #079af5;
         <row/>
         <column>
          <property name="text">
-          <string>ID</string>
+          <string>Görüşme Tarihi</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Name</string>
+          <string>Ad Soyad</string>
          </property>
         </column>
-        <item row="0" column="0">
+        <column>
          <property name="text">
-          <string>2345</string>
+          <string>Mentor</string>
          </property>
-        </item>
-        <item row="0" column="1">
+        </column>
+        <column>
          <property name="text">
-          <string>eergv</string>
+          <string>IT Bilgisi</string>
          </property>
-        </item>
-        <item row="1" column="0">
+        </column>
+        <column>
          <property name="text">
-          <string>34355</string>
+          <string>Yogunluk</string>
          </property>
-        </item>
-        <item row="1" column="1">
+        </column>
+        <column>
          <property name="text">
-          <string>frefer</string>
+          <string>Yorumlar</string>
          </property>
-        </item>
+        </column>
        </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QPushButton" name="pb_Back">
+         <widget class="QPushButton" name="pb_back">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -414,7 +429,7 @@ background-color: #079af5;
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pb_Exit">
+         <widget class="QPushButton" name="pb_exit">
           <property name="minimumSize">
            <size>
             <width>0</width>

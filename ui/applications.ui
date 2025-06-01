@@ -118,7 +118,7 @@ color: rgb(0, 0, 0);</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="logo_label">
            <property name="maximumSize">
             <size>
              <width>110</width>
@@ -135,7 +135,7 @@ color: rgb(0, 0, 0);</string>
             <enum>Qt::TextFormat::PlainText</enum>
            </property>
            <property name="pixmap">
-            <pixmap>../../resorces/logo.png</pixmap>
+            <pixmap>../resorces/logo.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
