@@ -158,19 +158,6 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
         <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="title_label">
           <property name="baseSize">
@@ -193,10 +180,13 @@ color: rgb(0, 0, 0);</string>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>40</width>
-            <height>20</height>
+            <width>110</width>
+            <height>30</height>
            </size>
           </property>
          </spacer>
