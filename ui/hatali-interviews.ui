@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>626</width>
-    <height>540</height>
+    <width>640</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,8 +21,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>150</width>
-    <height>180</height>
+    <width>640</width>
+    <height>480</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -35,81 +35,7 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="1" column="3">
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>18</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="1">
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>18</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="logolabel">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="cursor">
-           <cursorShape>ArrowCursor</cursorShape>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">selection-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="textFormat">
-           <enum>Qt::TextFormat::AutoText</enum>
-          </property>
-          <property name="pixmap">
-           <pixmap>../wera.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QLabel" name="titellabel">
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Intervieuws Window&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="whatsThis">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Intervieuws Window&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);</string>
-          </property>
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; font-weight:600; color:#ffffff;&quot;&gt;Interviews Window&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="textInteractionFlags">
-           <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse|Qt::TextInteractionFlag::TextBrowserInteraction|Qt::TextInteractionFlag::TextEditable|Qt::TextInteractionFlag::TextSelectableByMouse</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
+      <item row="2" column="0">
        <widget class="QFrame" name="frame">
         <property name="accessibleDescription">
          <string/>
@@ -121,41 +47,26 @@
          <string notr="true">alternate-background-color: rgb(145, 10, 103);</string>
         </property>
         <property name="frameShape">
-         <enum>QFrame::Shape::Panel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
+         <enum>QFrame::NoFrame</enum>
         </property>
         <property name="lineWidth">
-         <number>6</number>
+         <number>0</number>
         </property>
         <property name="midLineWidth">
-         <number>2</number>
+         <number>1</number>
         </property>
         <layout class="QGridLayout" name="gridLayout">
          <item row="1" column="0">
           <widget class="QPushButton" name="projectButton">
            <property name="styleSheet">
-            <string notr="true">QHeaderView::section {
-    color: red; /* Burada istediğin rengi yazabilirsin */
-    font-weight: bold; /* İsteğe bağlı: yazıyı kalın yapar */
-}
-QPushButton {
+            <string notr="true">QPushButton {
     background-color: #6f56b0;
     color: white;
     border-radius: 8px;
     padding: 8px;
+	font: 75 15pt &quot;Times New Roman&quot;;
     font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #8263c6;
-}
-
-QPushButton:pressed {
-    background-color: #594097;
-}
-</string>
+}</string>
            </property>
            <property name="text">
             <string>Project Submitted</string>
@@ -168,26 +79,14 @@ QPushButton:pressed {
          <item row="1" column="1" colspan="2">
           <widget class="QPushButton" name="projectNotButton">
            <property name="styleSheet">
-            <string notr="true">QHeaderView::section {
-    color: red; /* Burada istediğin rengi yazabilirsin */
-    font-weight: bold; /* İsteğe bağlı: yazıyı kalın yapar */
-}
-QPushButton {
+            <string notr="true">QPushButton {
     background-color: #6f56b0;
     color: white;
     border-radius: 8px;
     padding: 8px;
+	font: 75 15pt &quot;Times New Roman&quot;;
     font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #8263c6;
-}
-
-QPushButton:pressed {
-    background-color: #594097;
-}
-</string>
+}</string>
            </property>
            <property name="text">
             <string>Project  Not Submitted</string>
@@ -657,26 +556,14 @@ QPushButton:pressed {
             </palette>
            </property>
            <property name="styleSheet">
-            <string notr="true">QHeaderView::section {
-    color: red; /* Burada istediğin rengi yazabilirsin */
-    font-weight: bold; /* İsteğe bağlı: yazıyı kalın yapar */
-}
-QPushButton {
+            <string notr="true">QPushButton {
     background-color: #6f56b0;
     color: white;
     border-radius: 8px;
     padding: 8px;
+	font: 75 15pt &quot;Times New Roman&quot;;
     font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #8263c6;
-}
-
-QPushButton:pressed {
-    background-color: #594097;
-}
-</string>
+}</string>
            </property>
            <property name="text">
             <string>Search</string>
@@ -695,26 +582,14 @@ QPushButton:pressed {
          <item row="3" column="0">
           <widget class="QPushButton" name="returnButton">
            <property name="styleSheet">
-            <string notr="true">QHeaderView::section {
-    color: red; /* Burada istediğin rengi yazabilirsin */
-    font-weight: bold; /* İsteğe bağlı: yazıyı kalın yapar */
-}
-QPushButton {
+            <string notr="true">QPushButton {
     background-color: #6f56b0;
     color: white;
     border-radius: 8px;
     padding: 8px;
+	font: 75 15pt &quot;Times New Roman&quot;;
     font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #8263c6;
-}
-
-QPushButton:pressed {
-    background-color: #594097;
-}
-</string>
+}</string>
            </property>
            <property name="text">
             <string>Return</string>
@@ -727,26 +602,14 @@ QPushButton:pressed {
          <item row="3" column="2">
           <widget class="QPushButton" name="exitButton">
            <property name="styleSheet">
-            <string notr="true">QHeaderView::section {
-    color: red; /* Burada istediğin rengi yazabilirsin */
-    font-weight: bold; /* İsteğe bağlı: yazıyı kalın yapar */
-}
-QPushButton {
+            <string notr="true">QPushButton {
     background-color: #6f56b0;
     color: white;
     border-radius: 8px;
     padding: 8px;
+	font: 75 15pt &quot;Times New Roman&quot;;
     font-weight: bold;
-}
-
-QPushButton:hover {
-    background-color: #8263c6;
-}
-
-QPushButton:pressed {
-    background-color: #594097;
-}
-</string>
+}</string>
            </property>
            <property name="text">
             <string>Exit</string>
@@ -762,7 +625,8 @@ QPushButton:pressed {
             <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);
     border-radius: 8px;
-    padding: 5px;</string>
+    padding: 8px;
+font: 75 15pt &quot;Times New Roman&quot;;</string>
            </property>
            <property name="inputMask">
             <string/>
@@ -771,7 +635,7 @@ color: rgb(0, 0, 0);
             <bool>true</bool>
            </property>
            <property name="echoMode">
-            <enum>QLineEdit::EchoMode::Normal</enum>
+            <enum>QLineEdit::Normal</enum>
            </property>
            <property name="cursorPosition">
             <number>0</number>
@@ -783,7 +647,7 @@ color: rgb(0, 0, 0);
             <string>Search</string>
            </property>
            <property name="cursorMoveStyle">
-            <enum>Qt::CursorMoveStyle::LogicalMoveStyle</enum>
+            <enum>Qt::LogicalMoveStyle</enum>
            </property>
           </widget>
          </item>
@@ -797,9 +661,6 @@ color: rgb(0, 0, 0);
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(228, 177, 240);</string>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Shadow::Plain</enum>
            </property>
            <row>
             <property name="text">
@@ -876,11 +737,89 @@ color: rgb(0, 0, 0);
         </layout>
        </widget>
       </item>
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="1" column="0">
+         <widget class="QLabel" name="logolabel">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>110</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">selection-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="pixmap">
+           <pixmap>../resorces/logo.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="titellabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Intervieuws Window&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt; font-weight:600;&quot;&gt;Intervieuws Window&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(255, 255, 255);
+font: 16pt &quot;Segoe UI&quot;;
+
+</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; font-weight:600; color:#ffffff;&quot;&gt;Interviews Window&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::NoTextInteraction</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
      </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

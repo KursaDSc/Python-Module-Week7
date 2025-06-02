@@ -3,13 +3,13 @@
  <class>fr_mentor</class>
  <widget class="QWidget" name="fr_mentor">
   <property name="windowModality">
-   <enum>Qt::WindowModality::NonModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>846</width>
+    <width>884</width>
     <height>600</height>
    </rect>
   </property>
@@ -38,7 +38,7 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: rgb(88, 185, 245);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -150,24 +150,9 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
 </string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::Shape::Box</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="5,10,80,5">
-      <property name="leftMargin">
-       <number>15</number>
-      </property>
-      <property name="topMargin">
-       <number>15</number>
-      </property>
-      <property name="rightMargin">
-       <number>15</number>
-      </property>
-      <property name="bottomMargin">
-       <number>15</number>
-      </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
@@ -179,8 +164,7 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">
-</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string/>
@@ -194,6 +178,22 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
          </widget>
         </item>
         <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="title_label">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -202,10 +202,7 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
            </sizepolicy>
           </property>
           <property name="styleSheet">
-           <string notr="true">
-
-
-</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Mentor Meeting</string>
@@ -213,18 +210,15 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
           <property name="scaledContents">
            <bool>false</bool>
           </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_4">
+         <spacer name="horizontalSpacer_2">
           <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeType">
-           <enum>QSizePolicy::Policy::Fixed</enum>
+           <enum>QSizePolicy::Minimum</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -237,11 +231,26 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
        </layout>
       </item>
       <item>
-       <layout class="QGridLayout" name="gridLayout" columnstretch="30,50,60,30">
-        <property name="verticalSpacing">
-         <number>6</number>
-        </property>
-        <item row="2" column="0" colspan="2">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLineEdit" name="search_edit"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="search_button">
+          <property name="styleSheet">
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
+          </property>
+          <property name="text">
+           <string>🔍 Search</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
          <widget class="QPushButton" name="all_applicaitons_button">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -261,12 +270,16 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
             <height>35</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
+          </property>
           <property name="text">
            <string>🗂️ All Applications</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="3" alignment="Qt::AlignmentFlag::AlignRight">
+        <item>
          <widget class="QComboBox" name="decision_combobox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -297,82 +310,6 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
            </property>
           </item>
          </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLineEdit" name="search_edit">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="clearButtonEnabled">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="search_button">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>60</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>🔍 Search</string>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>24</width>
-            <height>24</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="2" column="2">
-         <spacer name="horizontalSpacer_6">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </item>
@@ -483,15 +420,19 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
             <height>35</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
+          </property>
           <property name="text">
            <string>🔙 Back to Preferences</string>
           </property>
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_3">
+         <spacer name="horizontalSpacer">
           <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -520,6 +461,10 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
             <width>16777215</width>
             <height>35</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
           </property>
           <property name="text">
            <string>❌ Exit</string>

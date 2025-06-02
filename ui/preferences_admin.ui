@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>380</height>
+    <width>770</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -34,7 +34,7 @@ background-color: rgb(85, 170, 127);
 
 </string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
@@ -62,12 +62,9 @@ QPushButton:pressed {
                 </string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::Shape::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
@@ -89,7 +86,7 @@ QPushButton:pressed {
           </property>
          </widget>
         </item>
-        <item alignment="Qt::AlignmentFlag::AlignHCenter">
+        <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="label">
           <property name="styleSheet">
            <string notr="true">color: #006400;              /* Çok koyu yeşil: DarkGreen */
@@ -103,12 +100,12 @@ font: bold 16pt &quot;Segoe UI&quot;;  /* Kalın ve 16 punto Segoe UI */
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_2">
+         <spacer name="horizontalSpacer">
           <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeType">
-           <enum>QSizePolicy::Policy::Fixed</enum>
+           <enum>QSizePolicy::Fixed</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>

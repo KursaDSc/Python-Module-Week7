@@ -116,10 +116,7 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
 </string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::Shape::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Shadow::Raised</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <property name="leftMargin">
@@ -151,7 +148,7 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
            <string/>
           </property>
           <property name="textFormat">
-           <enum>Qt::TextFormat::PlainText</enum>
+           <enum>Qt::PlainText</enum>
           </property>
           <property name="pixmap">
            <pixmap>../resorces/logo.png</pixmap>
@@ -162,6 +159,19 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
          </widget>
         </item>
         <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="title_label">
           <property name="baseSize">
            <size>
@@ -176,23 +186,17 @@ color: rgb(0, 0, 0);</string>
           <property name="text">
            <string>Applications</string>
           </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer">
+         <spacer name="horizontalSpacer_2">
           <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Policy::Fixed</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>110</width>
-            <height>30</height>
+            <width>40</width>
+            <height>20</height>
            </size>
           </property>
          </spacer>
@@ -200,23 +204,7 @@ color: rgb(0, 0, 0);</string>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="70,30,10">
-        <item>
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Policy::Expanding</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>400</width>
-            <height>30</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="30,10">
         <item>
          <widget class="QLineEdit" name="search_edit">
           <property name="enabled">
@@ -256,7 +244,8 @@ font: italic 8pt &quot;Arial&quot;;
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
           </property>
           <property name="text">
            <string>SEARCH</string>
@@ -279,8 +268,8 @@ font: italic 8pt &quot;Arial&quot;;
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">
-</string>
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
           </property>
           <property name="text">
            <string>Mentor Meeting Undefined</string>
@@ -299,7 +288,8 @@ font: italic 8pt &quot;Arial&quot;;
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
           </property>
           <property name="text">
            <string>Mentor Meeting Defined</string>
@@ -318,7 +308,8 @@ font: italic 8pt &quot;Arial&quot;;
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
           </property>
           <property name="text">
            <string>All Application</string>
@@ -337,7 +328,8 @@ font: italic 8pt &quot;Arial&quot;;
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
           </property>
           <property name="text">
            <string>VIT 7 Records</string>
@@ -354,9 +346,9 @@ font: italic 8pt &quot;Arial&quot;;
            <colorrole role="WindowText">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -383,18 +375,18 @@ font: italic 8pt &quot;Arial&quot;;
            <colorrole role="Text">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
            <colorrole role="ButtonText">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -468,9 +460,9 @@ font: italic 8pt &quot;Arial&quot;;
            <colorrole role="PlaceholderText">
             <brush brushstyle="SolidPattern">
              <color alpha="128">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -479,9 +471,9 @@ font: italic 8pt &quot;Arial&quot;;
            <colorrole role="WindowText">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -508,18 +500,18 @@ font: italic 8pt &quot;Arial&quot;;
            <colorrole role="Text">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
            <colorrole role="ButtonText">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -593,9 +585,9 @@ font: italic 8pt &quot;Arial&quot;;
            <colorrole role="PlaceholderText">
             <brush brushstyle="SolidPattern">
              <color alpha="128">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -604,9 +596,9 @@ font: italic 8pt &quot;Arial&quot;;
            <colorrole role="WindowText">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -633,18 +625,18 @@ font: italic 8pt &quot;Arial&quot;;
            <colorrole role="Text">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
            <colorrole role="ButtonText">
             <brush brushstyle="SolidPattern">
              <color alpha="255">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -718,9 +710,9 @@ font: italic 8pt &quot;Arial&quot;;
            <colorrole role="PlaceholderText">
             <brush brushstyle="SolidPattern">
              <color alpha="128">
-              <red>43</red>
-              <green>43</green>
-              <blue>43</blue>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -861,7 +853,8 @@ QTableCornerButton::section {
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
           </property>
           <property name="text">
            <string>🔙 Back to Preferences</string>
@@ -869,9 +862,9 @@ QTableCornerButton::section {
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_4">
+         <spacer name="horizontalSpacer_3">
           <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -905,7 +898,8 @@ QTableCornerButton::section {
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
           </property>
           <property name="text">
            <string>❌ Exit</string>
