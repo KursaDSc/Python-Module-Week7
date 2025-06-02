@@ -109,3 +109,10 @@ class LoginWindow(QWidget):
             self.passwordField.setEchoMode(QLineEdit.EchoMode.Normal)  # Show password
         else:
             self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)  # Hide password
+
+if __name__ == "__main__":
+    import sys
+    app = QApplication(sys.argv)
+    login_window = LoginWindow()
+    login_window.show()
+    sys.exit(app.exec())

@@ -13,14 +13,16 @@ class MentorWindow(QtWidgets.QMainWindow):
 
         self.sheet_service = GoogleSheetsService()
         self.mentor_config = GOOGLE_SHEETS[SheetName.MENTOR]
+        
+        # Set frameless and transparent window
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         # Buton bağlantıları
         self.allConversationsButton.clicked.connect(self.load_all_conversations)
         self.searchButton.clicked.connect(self.search_data)
         
-        # Set frameless and transparent window
-        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+
 
     def load_all_conversations(self):
         data = self.sheet_service.read_data(

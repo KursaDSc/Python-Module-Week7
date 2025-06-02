@@ -1,13 +1,8 @@
-from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplication
+from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QTableWidget, QApplication, QTableWidgetItem
 from PyQt6 import uic
 from PyQt6.QtCore import Qt
 
-from utils.validators import Validator
-from views.preferences_admin import AdminPreferencesWindow
-from views.preferences import UserPreferencesWindow
-
-from config import GOOGLE_SHEETS, SheetName
-from services.google_sheets_service import GoogleSheetsService
+from services.google_calendar_service import GoogleCalendarService
 
 class AdminMenuWindow(QWidget):
     """
@@ -25,87 +20,68 @@ class AdminMenuWindow(QWidget):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         # ✅ Find widgets by name and cast them to appropriate types
-        self.loginButton: QPushButton = self.findChild(QPushButton, "loginButton")
+        self.activityButton: QPushButton = self.findChild(QPushButton, "activityButton")
+        self.emailButton: QPushButton = self.findChild(QPushButton, "emailButton")
+        self.returnButton: QPushButton = self.findChild(QPushButton, "returnButton")
         self.exitButton: QPushButton = self.findChild(QPushButton, "exitButton")
-        self.usernameField: QLineEdit = self.findChild(QLineEdit, "usernameField")
-        self.passwordField: QLineEdit = self.findChild(QLineEdit, "passwordField")
-        self.errorlabel: QLabel = self.findChild(QLabel, "errorlabel")
-        self.showPasswordCheckBox: QWidget = self.findChild(QWidget, "showPasswordCheckBox")
-        self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)  # Initially hide password
+        self.activityTable: QTableWidget = self.findChild(QTableWidget, "activityTable")
+
 
         # Connect signals to corresponding methods
-        self.showPasswordCheckBox.toggled.connect(self.toggle_password_visibility)
-        self.loginButton.clicked.connect(self.handle_login)
+        self.activityButton.clicked.connect(self.show_calendar_events)
+        self.emailButton.clicked.connect(self.send_email)
+        self.returnButton.clicked.connect(self.return_to_preferences)
         self.exitButton.clicked.connect(self.close_app)
         
         
-    def get_users_data(self) -> list[list[str]]:
+    def show_calendar_events(self) -> None:
+        # GoogleCalendarService ile etkinlikleri al
+        calendar_service = GoogleCalendarService('credentials.json')
+        events = calendar_service.list_events(max_results=20)
+        print(f"Etkinlikler: {events}")
+
+        # TableWidget ayarları
+        self.activityTable.setRowCount(len(events))
+        self.activityTable.setColumnCount(4)
+        self.activityTable.setHorizontalHeaderLabels([
+            "Etkinlik Adı", "Başlangıç Zamanı", "Katılımcı E-Maili", "Organizatör E-Maili"
+        ])
+
+        for row, event in enumerate(events):
+            event_name = event.get('summary', 'Yok')
+            start_time = event.get('start', {}).get('dateTime', event.get('start', {}).get('date', 'Yok'))
+            organizer_email = event.get('organizer', {}).get('email', 'Yok')
+            attendees = event.get('attendees', [])
+            attendee_email = attendees[0]['email'] if attendees else 'Yok'
+
+            self.activityTable.setItem(row, 0, QTableWidgetItem(event_name))
+            self.activityTable.setItem(row, 1, QTableWidgetItem(start_time))
+            self.activityTable.setItem(row, 2, QTableWidgetItem(attendee_email))
+            self.activityTable.setItem(row, 3, QTableWidgetItem(organizer_email))
+
+    def send_email(self) -> None:
         """
-        Fetches user data from the Google Sheets document specified in the configuration.
-
-        Returns:
-            list[list[str]]: A list of rows, each row being a list of string cell values
-                            fetched from the Google Sheet's user data range.
+        Placeholder method for sending emails.
+        This should be implemented with actual email sending logic.
         """
-        # Initialize Google Sheets service
-        sheet_service = GoogleSheetsService()
-        sheet_id = GOOGLE_SHEETS[SheetName.USERS].get("sheet_id")
-        range_name = GOOGLE_SHEETS[SheetName.USERS].get("range_name", "A1:C100")  # Default range if not specified
-        users = sheet_service.read_data(sheet_id, range_name)
-        return users
-
-
-    def handle_login(self) -> None:
-        """
-        Handles login logic:
-        - Reads user data from Google Sheets.
-        - Validates credentials.
-        - Opens appropriate preferences window based on user role.
-        """
-        validator = Validator()
-        # Read user data from Google Sheets
-        users = self.get_users_data()
-        if not users:
-            self.errorlabel.setText("No user data found!")
-            return
-
-        role = validator.validate_user(self.usernameField.text(), self.passwordField.text(), users)
-
-        if role:
-            self.errorlabel.setText(f"Login successful! Role: {role}")
-            self.open_preferences(role)
-        else:
-            self.errorlabel.setText("Invalid username or password!")
-            self.usernameField.clear()
-            self.passwordField.clear()
-
-    def open_preferences(self, role: str) -> None:
-        """
-        Opens the appropriate preferences window based on user role.
+        print("Email gönderme işlevi henüz uygulanmadı.")
         
-        Args:
-            role (str): The role of the user, either "admin" or "user".
+    def return_to_preferences(self) -> None:
         """
-        if role == "admin":
-            self.preferences_window = AdminPreferencesWindow()
-        else:
-            self.preferences_window = UserPreferencesWindow()
-
-        self.preferences_window.show()
-        self.close()
-
+        Returns to the preferences window.
+        This should be implemented with actual logic to return to the preferences.
+        """
+        print("Tercihler penceresine dönme işlevi henüz uygulanmadı.")
+                 
+    
     def close_app(self) -> None:
         """Exits the application."""
         QApplication.quit()
 
-    def toggle_password_visibility(self, checked: bool) -> None:
-        """
-        Toggles password visibility in the password input field.
-        
-        Args:
-            checked (bool): Whether the checkbox is checked (True to show password).
-        """
-        if checked:
-            self.passwordField.setEchoMode(QLineEdit.EchoMode.Normal)  # Show password
-        else:
-            self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)  # Hide password
+
+if __name__ == "__main__":
+    import sys
+    app = QApplication(sys.argv)
+    window = AdminMenuWindow()
+    window.show()
+    sys.exit(app.exec())
