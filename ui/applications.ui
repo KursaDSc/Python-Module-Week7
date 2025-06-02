@@ -158,19 +158,6 @@ QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
           </property>
          </widget>
         </item>
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
         <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="title_label">
           <property name="baseSize">
@@ -193,10 +180,13 @@ color: rgb(0, 0, 0);</string>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>40</width>
-            <height>20</height>
+            <width>110</width>
+            <height>30</height>
            </size>
           </property>
          </spacer>
@@ -257,7 +247,7 @@ font: italic 8pt &quot;Arial&quot;;
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="pushButton_mentormeetinundefined">
+         <widget class="QPushButton" name="pushButton_allaplication">
           <property name="font">
            <font>
             <family>Segoe UI</family>
@@ -272,7 +262,7 @@ font: italic 8pt &quot;Arial&quot;;
     padding: 8px;</string>
           </property>
           <property name="text">
-           <string>Mentor Meeting Undefined</string>
+           <string>All Application</string>
           </property>
          </widget>
         </item>
@@ -297,7 +287,7 @@ font: italic 8pt &quot;Arial&quot;;
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_allaplication">
+         <widget class="QPushButton" name="pushButton_mentormeetinundefined">
           <property name="font">
            <font>
             <family>Segoe UI</family>
@@ -312,28 +302,39 @@ font: italic 8pt &quot;Arial&quot;;
     padding: 8px;</string>
           </property>
           <property name="text">
-           <string>All Application</string>
+           <string>Mentor Meeting Undefined</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_vit7records">
-          <property name="font">
-           <font>
-            <family>Segoe UI</family>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
+         <widget class="QComboBox" name="comboBox">
           <property name="styleSheet">
            <string notr="true">    border-radius: 8px;
-    padding: 8px;</string>
+    padding: 5px;</string>
           </property>
-          <property name="text">
-           <string>VIT 7 Records</string>
+          <property name="frame">
+           <bool>true</bool>
           </property>
+          <item>
+           <property name="text">
+            <string>Prev Vit Check</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Filtered Applications</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Different Applications</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Duplicate Applications</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>
