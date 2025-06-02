@@ -237,6 +237,7 @@ font: italic 8pt &quot;Arial&quot;;
           <property name="font">
            <font>
             <family>Segoe UI</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -257,50 +258,11 @@ font: italic 8pt &quot;Arial&quot;;
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="pushButton_mentormeetinundefined">
-          <property name="font">
-           <font>
-            <family>Segoe UI</family>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">    border-radius: 8px;
-    padding: 8px;</string>
-          </property>
-          <property name="text">
-           <string>Mentor Meeting Undefined</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_mentormeetingdefined">
-          <property name="font">
-           <font>
-            <family>Segoe UI</family>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">    border-radius: 8px;
-    padding: 8px;</string>
-          </property>
-          <property name="text">
-           <string>Mentor Meeting Defined</string>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QPushButton" name="pushButton_allaplication">
           <property name="font">
            <font>
             <family>Segoe UI</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -317,10 +279,11 @@ font: italic 8pt &quot;Arial&quot;;
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_vit7records">
+         <widget class="QPushButton" name="pushButton_mentormeetingdefined">
           <property name="font">
            <font>
             <family>Segoe UI</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -332,8 +295,57 @@ font: italic 8pt &quot;Arial&quot;;
     padding: 8px;</string>
           </property>
           <property name="text">
-           <string>VIT 7 Records</string>
+           <string>Mentor Meeting Defined</string>
           </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_mentormeetinundefined">
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
+          </property>
+          <property name="text">
+           <string>Mentor Meeting Undefined</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox">
+          <property name="styleSheet">
+           <string notr="true">    border-radius: 8px;
+    padding: 8px;</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Prev Vit Check</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Filtered Applications</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Different Applications</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Duplicate Applications</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>
@@ -457,15 +469,6 @@ font: italic 8pt &quot;Arial&quot;;
              </color>
             </brush>
            </colorrole>
-           <colorrole role="PlaceholderText">
-            <brush brushstyle="SolidPattern">
-             <color alpha="128">
-              <red>0</red>
-              <green>0</green>
-              <blue>0</blue>
-             </color>
-            </brush>
-           </colorrole>
           </active>
           <inactive>
            <colorrole role="WindowText">
@@ -582,15 +585,6 @@ font: italic 8pt &quot;Arial&quot;;
              </color>
             </brush>
            </colorrole>
-           <colorrole role="PlaceholderText">
-            <brush brushstyle="SolidPattern">
-             <color alpha="128">
-              <red>0</red>
-              <green>0</green>
-              <blue>0</blue>
-             </color>
-            </brush>
-           </colorrole>
           </inactive>
           <disabled>
            <colorrole role="WindowText">
@@ -704,15 +698,6 @@ font: italic 8pt &quot;Arial&quot;;
               <red>249</red>
               <green>249</green>
               <blue>249</blue>
-             </color>
-            </brush>
-           </colorrole>
-           <colorrole role="PlaceholderText">
-            <brush brushstyle="SolidPattern">
-             <color alpha="128">
-              <red>0</red>
-              <green>0</green>
-              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -846,6 +831,7 @@ QTableCornerButton::section {
           <property name="font">
            <font>
             <family>Segoe UI</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -891,6 +877,7 @@ QTableCornerButton::section {
           <property name="font">
            <font>
             <family>Segoe UI</family>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
