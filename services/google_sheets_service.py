@@ -1,15 +1,16 @@
 # google_sheets_service.py
 
-import gspread
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
-from config import SERVICE_ACCOUNT_FILE, SCOPES
+from config import SERVICE_ACCOUNT_FILE
+
+
 
 class GoogleSheetsService:
     def __init__(self):
         self.creds = Credentials.from_service_account_file(
             SERVICE_ACCOUNT_FILE, 
-            scopes = SCOPES
+            scopes = ['https://www.googleapis.com/auth/spreadsheets']
         )
         self.service = build("sheets", "v4", credentials=self.creds)
         self.sheet = self.service.spreadsheets()
@@ -57,5 +58,4 @@ class GoogleSheetsService:
             ).execute()
         except Exception as e:
             print(f"Hücre güncelleme hatası: {e}")
-
 

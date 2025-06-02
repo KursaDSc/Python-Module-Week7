@@ -413,6 +413,13 @@ QScrollBar::handle:vertical {
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>usernameField</tabstop>
+  <tabstop>passwordField</tabstop>
+  <tabstop>loginButton</tabstop>
+  <tabstop>showPasswordCheckBox</tabstop>
+  <tabstop>exitButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
