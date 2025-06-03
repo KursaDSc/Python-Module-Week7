@@ -32,8 +32,10 @@ class Validator:
     def validate_email(email):
         """
         E-posta adresinin geçerli bir formatta olup olmadığını kontrol eder.
-        Basit bir regex ile doğrulama yapar.
+        None, boş string veya yanlış tip için False döner.
         """
+        if not isinstance(email, str) or not email:
+            return False
         import re
         email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         return re.match(email_regex, email) is not None
