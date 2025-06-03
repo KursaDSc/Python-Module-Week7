@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplicatio
 from PyQt6 import uic
 from PyQt6.QtCore import Qt
 
-from utils.validators import Validator
+from services.auth import authenticate
 from views.preferences_admin import AdminPreferencesWindow
 from views.preferences import UserPreferencesWindow
 
@@ -35,7 +35,7 @@ class LoginWindow(QWidget):
 
         # Connect signals to corresponding methods
         self.showPasswordCheckBox.toggled.connect(self.toggle_password_visibility)
-        self.loginButton.clicked.connect(self.handle_login)
+        self.loginButton.clicked.connect(self.login)
         self.exitButton.clicked.connect(self.close_app)
         
         
@@ -55,25 +55,24 @@ class LoginWindow(QWidget):
         return users
 
 
-    def handle_login(self) -> None:
+    def login(self) -> None:
         """
         Handles login logic:
         - Reads user data from Google Sheets.
         - Validates credentials.
         - Opens appropriate preferences window based on user role.
         """
-        validator = Validator()
+
         # Read user data from Google Sheets
         users = self.get_users_data()
         if not users:
             self.errorlabel.setText("No user data found!")
             return
 
-        role = validator.validate_user(self.usernameField.text(), self.passwordField.text(), users)
-
-        if role:
-            self.errorlabel.setText(f"Login successful! Role: {role}")
-            self.open_preferences(role)
+        user = authenticate(self.usernameField.text(), self.passwordField.text(), users)
+        if user:
+            self.errorlabel.setText(f"Login successful! Role: {user.role}")
+            self.open_preferences(user.role)
         else:
             self.errorlabel.setText("Invalid username or password!")
             self.usernameField.clear()
