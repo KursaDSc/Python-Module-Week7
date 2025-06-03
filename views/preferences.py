@@ -19,7 +19,7 @@ class UserPreferencesWindow(QWidget):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         # Butonları bağla 
-        self.findChild(QPushButton, "btn_exit").clicked.connect(self.exit_app)
+        self.findChild(QPushButton, "exitButton").clicked.connect(self.exit_app)
         
     def exit_app(self):
         # Uygulamadan çıkış

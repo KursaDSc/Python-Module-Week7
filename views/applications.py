@@ -9,7 +9,6 @@ from config import GOOGLE_SHEETS, SheetName
 from services.google_sheets_service import GoogleSheetsService
 
 class ApplicationsWindow(QWidget):
-class ApplicationsWindow(QWidget):
     """
     Login window that authenticates users via Google Sheets data
     and redirects them to appropriate preference windows based on role.
