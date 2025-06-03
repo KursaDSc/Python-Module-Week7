@@ -3,6 +3,10 @@ from PyQt6 import uic
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication
 
+from views.applications import ApplicationsWindow
+from views.mentor import MentorWindow
+from views.interviews import InterviewsWindow
+
 class UserPreferencesWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -14,15 +18,9 @@ class UserPreferencesWindow(QWidget):
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
-        # Butonları bağla (örnek olarak, geri dön ve çıkış butonları)
-        self.findChild(QPushButton, "btn_return").clicked.connect(self.return_to_login)
+        # Butonları bağla 
         self.findChild(QPushButton, "btn_exit").clicked.connect(self.exit_app)
         
-    def return_to_login(self):
-        # Buraya Login ekranına geri dönme işlemi yazılabilir
-        print("Return to login window")
-        self.close()  # Şimdilik sadece pencereyi kapatıyoruz
-
     def exit_app(self):
         # Uygulamadan çıkış
         print("Application closed.")

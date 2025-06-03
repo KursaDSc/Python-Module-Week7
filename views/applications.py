@@ -3,13 +3,12 @@ from PyQt6 import uic
 from PyQt6.QtCore import Qt
 
 from utils.validators import Validator
-from views.preferences_admin import AdminPreferencesWindow
-from views.preferences import UserPreferencesWindow
+
 
 from config import GOOGLE_SHEETS, SheetName
 from services.google_sheets_service import GoogleSheetsService
 
-class Applications(QWidget):
+class ApplicationsWindow(QWidget):
     """
     Login window that authenticates users via Google Sheets data
     and redirects them to appropriate preference windows based on role.

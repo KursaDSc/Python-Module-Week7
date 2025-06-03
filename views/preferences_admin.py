@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplicatio
 from PyQt6 import uic
 from PyQt6.QtCore import Qt
 
-#from views.applications import Applications
+from views.applications import ApplicationsWindow
 from views.mentor import MentorWindow
 from views.interviews import InterviewsWindow
 
@@ -23,7 +23,7 @@ class AdminPreferencesWindow(QWidget):
         self.findChild(QPushButton, "btn_interviews").clicked.connect(self.open_interviews)
         self.findChild(QPushButton, "btn_admin_menu").clicked.connect(self.open_admin_menu)
         self.findChild(QPushButton, "btn_exit").clicked.connect(self.close)
-        self.findChild(QPushButton, "btn_return").clicked.connect(self.go_back)
+       
 
     def open_applications(self):
         print("📦 Applications penceresi acilacak")
@@ -46,9 +46,3 @@ class AdminPreferencesWindow(QWidget):
     def open_admin_menu(self):
         print("🛠️ Admin Menu zaten acik")
 
-    def go_back(self):
-        print("🔙 Giris ekranina donuluyor")
-        self.close()
-        #Giris ekranina donmek icin buraya LoginWindow eklenebilir
-        self.login_window = LoginWindow()
-        self.login_window.show()
