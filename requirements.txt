@@ -1,6 +1,5 @@
-PyQt6
-oauth2client
-google-api-python-client
-google-auth
-google-auth-oauthlib
-python-dotenv
+google_api_python_client==2.170.0
+protobuf==6.31.1
+PyQt6==6.9.0
+pyqt6_sip==13.10.2
+python-dotenv==1.1.0
