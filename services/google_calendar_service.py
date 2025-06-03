@@ -3,6 +3,8 @@ from google.oauth2.service_account import Credentials
 from dotenv import load_dotenv
 import os
 from typing import List, Optional
+from models.event import Event
+from utils.validators import Validator
 
 load_dotenv()
 
@@ -51,3 +53,14 @@ class GoogleCalendarService:
         ).execute()
 
         return events_result.get('items', [])
+    
+    @staticmethod
+    def event_from_api(event_dict):
+        title = event_dict.get('summary', 'N/A')
+        start_time = event_dict.get('start', {}).get('dateTime', event_dict.get('start', {}).get('date', 'N/A'))
+        attendees = event_dict.get('attendees', [])
+        attendee_email = attendees[0]['email'] if attendees else 'N/A'
+        organizer_email = event_dict.get('organizer', {}).get('email', 'N/A')
+        attendee_email = attendee_email if Validator.validate_email(attendee_email) else 'N/A'
+        organizer_email = organizer_email if Validator.validate_email(organizer_email) else 'N/A'
+        return Event(title, start_time, attendee_email, organizer_email)

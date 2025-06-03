@@ -4,7 +4,7 @@ from PyQt6.QtCore import Qt
 
 from utils.validators import Validator
 from services.google_calendar_service import GoogleCalendarService
-from services.email_service import send_email_to
+from services.email_service import send_email_to, event_from_api
 
 
 class AdminMenuWindow(QWidget):
@@ -49,29 +49,16 @@ class AdminMenuWindow(QWidget):
         attendee email, and organizer email.
         """
         calendar_service = GoogleCalendarService('credentials.json')
-        events = calendar_service.list_events(max_results=20)
+        events_raw = calendar_service.list_events(max_results=20)
+        events = [event_from_api(e) for e in events_raw]
 
         self.activityTable.setRowCount(len(events))
-        self.activityTable.setColumnCount(4)
-        self.activityTable.setHorizontalHeaderLabels([
-            "Event Title", "Start Time", "Attendee Email", "Organizer Email"
-        ])
-
         for row, event in enumerate(events):
-            event_name = event.get('summary', 'N/A')
-            start_time = event.get('start', {}).get('dateTime', event.get('start', {}).get('date', 'N/A'))
-            attendees = event.get('attendees', [])
-            attendee_email = attendees[0]['email'] if attendees else 'N/A'
-            organizer_email = event.get('organizer', {}).get('email', 'N/A')
+            self.activityTable.setItem(row, 0, QTableWidgetItem(event.title))
+            self.activityTable.setItem(row, 1, QTableWidgetItem(event.start_time))
+            self.activityTable.setItem(row, 2, QTableWidgetItem(event.attendee_email))
+            self.activityTable.setItem(row, 3, QTableWidgetItem(event.organizer_email))
 
-            # Validate attendee and organizer emails
-            attendee_email = attendee_email if Validator.validate_email(attendee_email) else 'N/A'
-            organizer_email = organizer_email if Validator.validate_email(organizer_email) else 'N/A'
-
-            self.activityTable.setItem(row, 0, QTableWidgetItem(event_name))
-            self.activityTable.setItem(row, 1, QTableWidgetItem(start_time))
-            self.activityTable.setItem(row, 2, QTableWidgetItem(attendee_email))
-            self.activityTable.setItem(row, 3, QTableWidgetItem(organizer_email))
 
     def send_emails_to_attendees(self) -> None:
         """

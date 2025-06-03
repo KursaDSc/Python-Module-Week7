@@ -7,26 +7,7 @@ class Validator:
     def __init__(self):
         pass
 
-        
-    @staticmethod
-    def validate_user(input_username, input_password, users_db):
-        """
-        Kullanıcı adı ve parola doğrulaması yapar.
-        users_db: {'kullanici_adi': {'password': 'parola', 'role': 'admin/normal'}}
-        Doğruysa rolünü döner, yanlışsa None döner.
-        """
-        try:
-            input_username = input_username.strip()
-            input_password = input_password.strip()
-
-            for user in users_db:
-                username, password, role = user
-                if username == input_username and password == input_password:
-                    return role
-            return None
-        except Exception as e:
-            print(f"Kullanıcı doğrulama hatası: {e}")
-            return None
+    
     
     @staticmethod
     def validate_email(email):
