@@ -9,14 +9,14 @@ from views.preferences import UserPreferencesWindow
 from config import GOOGLE_SHEETS, SheetName
 from services.google_sheets_service import GoogleSheetsService
 
-class LoginWindow(QWidget):
+class InterviewsWindow(QWidget):
     """
-    Login window that authenticates users via Google Sheets data
-    and redirects them to appropriate preference windows based on role.
+    Interviews window that allows users to manage interview schedules
+    and details.
     """
 
     def __init__(self) -> None:
-        """Initialize login window and connect signals to actions."""
+        """Initialize interviews window and connect signals to actions."""
         super().__init__()
         uic.loadUi(r"ui\interviews.ui", self)  # Load the UI file
 
