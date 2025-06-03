@@ -6,6 +6,8 @@ from PyQt6 import QtWidgets, uic
 from PyQt6.QtCore import Qt
 from services.google_sheets_service import GoogleSheetsService
 from config import GOOGLE_SHEETS, SheetName
+from PyQt6.QtWidgets import QHeaderView, QAbstractScrollArea
+
 
 class MentorWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -15,7 +17,6 @@ class MentorWindow(QtWidgets.QMainWindow):
         self.sheet_service = GoogleSheetsService()
         self.mentor_config = GOOGLE_SHEETS[SheetName.MENTOR]
 
-
         # Arayüz öğeleri
         self.search_button.clicked.connect(self.search_data)
         self.search_edit.returnPressed.connect(self.search_data)
@@ -24,20 +25,23 @@ class MentorWindow(QtWidgets.QMainWindow):
         self.all_applications_button = self.findChild(QtWidgets.QPushButton, "all_applications_button")
         self.decision_combobox = self.findChild(QtWidgets.QComboBox, "decision_combobox")
         self.applications_table = self.findChild(QtWidgets.QTableWidget, "applications_table")
-        self.applications_table.verticalHeader().setVisible(False)
-
         self.exit_button = self.findChild(QtWidgets.QPushButton, "exit_button")
         self.back_button = self.findChild(QtWidgets.QPushButton, "back_button")
 
+
+
         # Bağlantılar
         self.search_button.clicked.connect(self.search_data)
+        self.search_edit.returnPressed.connect(self.search_data)
         self.all_applications_button.clicked.connect(self.load_all_conversations)
         self.exit_button.clicked.connect(self.close)
         self.decision_combobox.currentTextChanged.connect(self.handle_decision_change)
 
-        # Pencereyi büyüt
-        self.resize(1000, 700)
+        # Pencere ayarları
+        self.sheet_service = GoogleSheetsService()
+        self.mentor_config = GOOGLE_SHEETS[SheetName.MENTOR]
         self.load_all_conversations()
+
 
     def handle_decision_change(self, text):
         print(f"Seçilen karar: {text}")
