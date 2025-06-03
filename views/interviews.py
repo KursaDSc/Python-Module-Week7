@@ -3,8 +3,6 @@ from PyQt6 import uic
 from PyQt6.QtCore import Qt
 
 from utils.validators import Validator
-from views.preferences_admin import AdminPreferencesWindow
-from views.preferences import UserPreferencesWindow
 
 from config import GOOGLE_SHEETS, SheetName
 from services.google_sheets_service import GoogleSheetsService
