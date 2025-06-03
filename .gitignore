@@ -2,17 +2,8 @@
 __pycache__/
 **/__pycache__/
 
-.DS_Store
 
 **/themes/
 x.ipynb
-
-*.ini
-*.sh
-.vscode/settings.json
-_tests.py
-cookie.json
-/venv*/
-/Venv*/
 .env
 credentials.json

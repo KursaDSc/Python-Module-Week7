@@ -1,111 +1,106 @@
-from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplication
+from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QTableWidget, QApplication, QTableWidgetItem
 from PyQt6 import uic
 from PyQt6.QtCore import Qt
 
 from utils.validators import Validator
-from views.preferences_admin import AdminPreferencesWindow
-from views.preferences import UserPreferencesWindow
+from services.google_calendar_service import GoogleCalendarService
+from services.email_service import send_email_to, event_from_api
 
-from config import GOOGLE_SHEETS, SheetName
-from services.google_sheets_service import GoogleSheetsService
 
 class AdminMenuWindow(QWidget):
     """
-    Login window that authenticates users via Google Sheets data
-    and redirects them to appropriate preference windows based on role.
+    Admin panel window for managing calendar events and sending emails.
+
+    Features:
+        - Display upcoming Google Calendar events in a table.
+        - Placeholder functionality for sending emails.
+        - Navigation control to return to preferences or exit the app.
     """
 
     def __init__(self) -> None:
-        """Initialize login window and connect signals to actions."""
+        """
+        Initializes the admin panel UI, sets up the window behavior,
+        and connects UI buttons to corresponding event handler methods.
+        """
         super().__init__()
         uic.loadUi(r"ui\admin_panel.ui", self)  # Load the UI file
 
-        # Set frameless and transparent window
+        # Configure window to be frameless and transparent
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
-        # ✅ Find widgets by name and cast them to appropriate types
-        self.loginButton: QPushButton = self.findChild(QPushButton, "loginButton")
+        # Retrieve and cast UI widgets
+        self.activityButton: QPushButton = self.findChild(QPushButton, "activityButton")
+        self.emailButton: QPushButton = self.findChild(QPushButton, "emailButton")
+        self.returnButton: QPushButton = self.findChild(QPushButton, "returnButton")
         self.exitButton: QPushButton = self.findChild(QPushButton, "exitButton")
-        self.usernameField: QLineEdit = self.findChild(QLineEdit, "usernameField")
-        self.passwordField: QLineEdit = self.findChild(QLineEdit, "passwordField")
-        self.errorlabel: QLabel = self.findChild(QLabel, "errorlabel")
-        self.showPasswordCheckBox: QWidget = self.findChild(QWidget, "showPasswordCheckBox")
-        self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)  # Initially hide password
+        self.activityTable: QTableWidget = self.findChild(QTableWidget, "activityTable")
 
-        # Connect signals to corresponding methods
-        self.showPasswordCheckBox.toggled.connect(self.toggle_password_visibility)
-        self.loginButton.clicked.connect(self.handle_login)
+        # Connect buttons to handler functions
+        self.activityButton.clicked.connect(self.show_calendar_events)
+        self.emailButton.clicked.connect(self.send_emails_to_attendees)
+        self.returnButton.clicked.connect(self.return_to_preferences)
         self.exitButton.clicked.connect(self.close_app)
-        
-        
-    def get_users_data(self) -> list[list[str]]:
+
+    def show_calendar_events(self) -> None:
         """
-        Fetches user data from the Google Sheets document specified in the configuration.
-
-        Returns:
-            list[list[str]]: A list of rows, each row being a list of string cell values
-                            fetched from the Google Sheet's user data range.
+        Fetches upcoming Google Calendar events and displays them
+        in a table widget. Each row includes event title, start time,
+        attendee email, and organizer email.
         """
-        # Initialize Google Sheets service
-        sheet_service = GoogleSheetsService()
-        sheet_id = GOOGLE_SHEETS[SheetName.USERS].get("sheet_id")
-        range_name = GOOGLE_SHEETS[SheetName.USERS].get("range_name", "A1:C100")  # Default range if not specified
-        users = sheet_service.read_data(sheet_id, range_name)
-        return users
+        calendar_service = GoogleCalendarService('credentials.json')
+        events_raw = calendar_service.list_events(max_results=20)
+        events = [event_from_api(e) for e in events_raw]
+
+        self.activityTable.setRowCount(len(events))
+        for row, event in enumerate(events):
+            self.activityTable.setItem(row, 0, QTableWidgetItem(event.title))
+            self.activityTable.setItem(row, 1, QTableWidgetItem(event.start_time))
+            self.activityTable.setItem(row, 2, QTableWidgetItem(event.attendee_email))
+            self.activityTable.setItem(row, 3, QTableWidgetItem(event.organizer_email))
 
 
-    def handle_login(self) -> None:
+    def send_emails_to_attendees(self) -> None:
         """
-        Handles login logic:
-        - Reads user data from Google Sheets.
-        - Validates credentials.
-        - Opens appropriate preferences window based on user role.
+        Collects unique attendee email addresses from the activity table
+        and sends an informational email to each valid address.
+
+        This method assumes that the attendee email addresses are located
+        in the third column (index 2) of the QTableWidget.
+
+        Invalid or missing values like 'N/A' or 'Yok' are ignored.
         """
-        validator = Validator()
-        # Read user data from Google Sheets
-        users = self.get_users_data()
-        if not users:
-            self.errorlabel.setText("No user data found!")
-            return
+        attendee_emails: set[str] = set()
+        row_count: int = self.activityTable.rowCount()
 
-        role = validator.validate_user(self.usernameField.text(), self.passwordField.text(), users)
+        for row in range(row_count):
+            email_item = self.activityTable.item(row, 2)  # Column index 2: Attendee Email
+            if email_item:
+                email = email_item.text().strip()
+                if Validator.validate_email(email):
+                    attendee_emails.add(email)
 
-        if role:
-            self.errorlabel.setText(f"Login successful! Role: {role}")
-            self.open_preferences(role)
-        else:
-            self.errorlabel.setText("Invalid username or password!")
-            self.usernameField.clear()
-            self.passwordField.clear()
+        for email in attendee_emails:
+            send_email_to(email, subject="Event Notification", body="You are invited to the event.")
 
-    def open_preferences(self, role: str) -> None:
+    def return_to_preferences(self) -> None:
         """
-        Opens the appropriate preferences window based on user role.
-        
-        Args:
-            role (str): The role of the user, either "admin" or "user".
+        Placeholder for returning to the preferences window.
+        Replace with navigation logic to switch windows.
         """
-        if role == "admin":
-            self.preferences_window = AdminPreferencesWindow()
-        else:
-            self.preferences_window = UserPreferencesWindow()
-
-        self.preferences_window.show()
-        self.close()
+        print("Return to preferences window is not implemented yet.")
 
     def close_app(self) -> None:
-        """Exits the application."""
+        """
+        Closes the application.
+        """
         QApplication.quit()
 
-    def toggle_password_visibility(self, checked: bool) -> None:
-        """
-        Toggles password visibility in the password input field.
-        
-        Args:
-            checked (bool): Whether the checkbox is checked (True to show password).
-        """
-        if checked:
-            self.passwordField.setEchoMode(QLineEdit.EchoMode.Normal)  # Show password
-        else:
-            self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)  # Hide password
+
+if __name__ == "__main__":
+    import sys, os
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    app = QApplication(sys.argv)
+    window = AdminMenuWindow()
+    window.show()
+    sys.exit(app.exec())

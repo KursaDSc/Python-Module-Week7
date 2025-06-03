@@ -38,7 +38,7 @@ QFrame {
 </string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="10,5,80,5">
       <property name="leftMargin">
@@ -74,7 +74,7 @@ QFrame {
           </property>
          </widget>
         </item>
-        <item alignment="Qt::AlignHCenter">
+        <item alignment="Qt::AlignmentFlag::AlignHCenter">
          <widget class="QLabel" name="titleLabel">
           <property name="font">
            <font>
@@ -93,10 +93,10 @@ QFrame {
         <item>
          <spacer name="horizontalSpacer_2">
           <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
           <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
+           <enum>QSizePolicy::Policy::Fixed</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -111,7 +111,7 @@ QFrame {
       <item>
        <layout class="QHBoxLayout" name="searchLayout">
         <item>
-         <widget class="QPushButton" name="searchButton">
+         <widget class="QPushButton" name="activityButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -149,7 +149,7 @@ QPushButton:pressed {
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="email_button">
+         <widget class="QPushButton" name="emailButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -182,7 +182,7 @@ QPushButton:pressed {
        </layout>
       </item>
       <item>
-       <widget class="QTableWidget" name="tableWidget">
+       <widget class="QTableWidget" name="activityTable">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -564,10 +564,10 @@ QPushButton:pressed {
         <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
           <property name="sizeType">
-           <enum>QSizePolicy::Minimum</enum>
+           <enum>QSizePolicy::Policy::Minimum</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
