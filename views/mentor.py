@@ -59,6 +59,7 @@ class MentorWindow(QtWidgets.QMainWindow):
         self.all_applications_button.clicked.connect(self.load_all_conversations)
         self.exit_button.clicked.connect(self.close)
         self.decision_combobox.currentTextChanged.connect(self.handle_decision_change)
+        self.back_button.clicked.connect(self.handle_back)
 
         self.load_all_conversations()
 
@@ -134,8 +135,8 @@ class MentorWindow(QtWidgets.QMainWindow):
             from views.preferences_admin import PreferencesAdminWindow
             self.preferences_window = PreferencesAdminWindow()
         else:
-            from views.preferences import PreferencesWindow
-            self.preferences_window = PreferencesWindow()
+            from views.preferences import UserPreferencesWindow
+            self.preferences_window = UserPreferencesWindow()
         self.preferences_window.show()
         self.close()
 
