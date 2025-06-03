@@ -4,9 +4,11 @@ from PyQt6.QtCore import Qt
 
 from utils.validators import Validator
 
+
 from config import GOOGLE_SHEETS, SheetName
 from services.google_sheets_service import GoogleSheetsService
 
+class ApplicationsWindow(QWidget):
 class ApplicationsWindow(QWidget):
     """
     Login window that authenticates users via Google Sheets data
