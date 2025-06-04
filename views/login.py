@@ -19,7 +19,7 @@ class LoginWindow(QWidget):
         """Initialize login window and connect signals to actions."""
         super().__init__()
         uic.loadUi(r"ui\login.ui", self)  # Load the UI file
-        self.data = self.get_users_data(self)
+        self.data = self.get_users_data()
         # Set frameless and transparent window
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
