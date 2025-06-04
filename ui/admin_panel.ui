@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
+    <width>530</width>
     <height>480</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>640</width>
+    <width>512</width>
     <height>480</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>530</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -26,12 +32,10 @@
    <item>
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
-      <string notr="true">
-
-QFrame {
+      <string notr="true">QFrame {
     background-color: #ab94da;
     border: none;
-	border-radius: 10 px;
+	border-radius: 20 px;
 }
 
 
@@ -144,9 +148,22 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string>Activity Control</string>
+           <string>Display Events</string>
           </property>
          </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
          <widget class="QPushButton" name="emailButton">
@@ -508,22 +525,22 @@ QTableWidget {
         </attribute>
         <column>
          <property name="text">
-          <string>Etkinlik Adı</string>
+          <string>Event Name</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Başlangıç Zamanı</string>
+          <string>Start Time</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Katılımcı Mail</string>
+          <string>Participant Email</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Organizator Mail</string>
+          <string>Organizer Email</string>
          </property>
         </column>
        </widget>
@@ -537,6 +554,12 @@ QTableWidget {
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
+           </size>
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
@@ -567,7 +590,7 @@ QPushButton:pressed {
            <enum>Qt::Orientation::Horizontal</enum>
           </property>
           <property name="sizeType">
-           <enum>QSizePolicy::Policy::Minimum</enum>
+           <enum>QSizePolicy::Policy::MinimumExpanding</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -589,6 +612,12 @@ QPushButton:pressed {
            <size>
             <width>80</width>
             <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>150</width>
+            <height>16777215</height>
            </size>
           </property>
           <property name="styleSheet">

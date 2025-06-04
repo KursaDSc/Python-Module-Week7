@@ -19,7 +19,7 @@ class LoginWindow(QWidget):
         """Initialize login window and connect signals to actions."""
         super().__init__()
         uic.loadUi(r"ui\login.ui", self)  # Load the UI file
-
+        self.data = self.get_users_data()
         # Set frameless and transparent window
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
@@ -64,12 +64,12 @@ class LoginWindow(QWidget):
         """
 
         # Read user data from Google Sheets
-        users = self.get_users_data()
-        if not users:
+
+        if not self.data:
             self.errorlabel.setText("No user data found!")
             return
 
-        user = authenticate(self.usernameField.text(), self.passwordField.text(), users)
+        user = authenticate(self.usernameField.text(), self.passwordField.text(), self.data)
         if user:
             self.errorlabel.setText(f"Login successful! Role: {user.role}")
             self.open_preferences(user.role)

@@ -26,6 +26,15 @@ class GoogleSheetsService:
         except Exception as e:
             print(f"Veri okuma hatası: {e}")
             return []
+        
+    def read_filtered_data(self, sheet_id: str, range_name: str, column_index: int, filter_value: str) -> list[list[str]]:
+        """
+        Reads data from the given range and returns only the rows where the value in the specified column matches filter_value.
+        column_index is zero-based.
+        """
+        all_rows = self.read_data(sheet_id, range_name)
+        filtered_rows = [row for row in all_rows if len(row) > column_index and row[column_index] == filter_value]
+        return filtered_rows
     
     def write_sheet(self, sheet_id, range_name, values):
         body = {'values': values}

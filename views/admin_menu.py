@@ -1,10 +1,10 @@
-from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QTableWidget, QApplication, QTableWidgetItem
+from PyQt6.QtWidgets import QWidget, QPushButton, QTableWidget, QApplication, QTableWidgetItem, QSizeGrip
 from PyQt6 import uic
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QPoint
 
 from utils.validators import Validator
 from services.google_calendar_service import GoogleCalendarService
-from services.email_service import send_email_to, event_from_api
+from services.email_service import send_email_to
 
 
 class AdminMenuWindow(QWidget):
@@ -25,9 +25,17 @@ class AdminMenuWindow(QWidget):
         super().__init__()
         uic.loadUi(r"ui\admin_panel.ui", self)  # Load the UI file
 
-        # Configure window to be frameless and transparent
+        # Frameless pencere ayarı
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+
+        # Sürükleme için pozisyon başlangıcı
+        self.drag_position = QPoint()
+
+        # Sağ alt köşeye yeniden boyutlandırma aracı ekle
+        self.resize_grip = QSizeGrip(self)
+        self.resize_grip.setStyleSheet("background: transparent;")
+        self.resize_grip.resize(16, 16)
 
         # Retrieve and cast UI widgets
         self.activityButton: QPushButton = self.findChild(QPushButton, "activityButton")
@@ -50,7 +58,7 @@ class AdminMenuWindow(QWidget):
         """
         calendar_service = GoogleCalendarService('credentials.json')
         events_raw = calendar_service.list_events(max_results=20)
-        events = [event_from_api(e) for e in events_raw]
+        events = [calendar_service.event_from_api(e) for e in events_raw]
 
         self.activityTable.setRowCount(len(events))
         for row, event in enumerate(events):
@@ -95,6 +103,30 @@ class AdminMenuWindow(QWidget):
         Closes the application.
         """
         QApplication.quit()
+        
+        # Pencereyi mouse ile taşıma fonksiyonları
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None
+
+    def handle_back(self):
+        if self.is_admin:
+            from views.preferences_admin import PreferencesAdminWindow
+            self.preferences_window = PreferencesAdminWindow()
+        else:
+            from views.preferences import UserPreferencesWindow
+            self.preferences_window = UserPreferencesWindow()
+        self.preferences_window.show()
+        self.close()
 
 
 if __name__ == "__main__":
