@@ -19,6 +19,7 @@ class UserPreferencesWindow(QWidget):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         # Butonları bağla 
+        self.findChild(QPushButton, "btn_mentor").clicked.connect(self.open_mentor_meeting)
         self.findChild(QPushButton, "exitButton").clicked.connect(self.exit_app)
 
     def open_mentor_meeting(self):
