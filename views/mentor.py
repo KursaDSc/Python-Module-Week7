@@ -15,6 +15,7 @@ class MentorWindow(QtWidgets.QMainWindow):
 
         self.is_admin = False  # veya dışarıdan alınabilir
 
+
         # Kenarsız ve taşınabilir pencere ayarı
         self.setWindowFlags(Qt.WindowType.CustomizeWindowHint| 
                     Qt.WindowType.WindowMinMaxButtonsHint | 
@@ -45,27 +46,17 @@ class MentorWindow(QtWidgets.QMainWindow):
         self.back_button = self.findChild(QtWidgets.QPushButton, "back_button")
         self.preferences_button = self.findChild(QtWidgets.QPushButton, "preferences_button")
 
-        # Scrollbar ve kolon ayarları
-        header = self.applications_table.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
-        header.setDefaultSectionSize(150)
-        self.applications_table.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
-        self.applications_table.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
-        self.applications_table.verticalHeader().setVisible(False)
 
         # Bağlantılar
         self.search_button.clicked.connect(self.search_data)
         self.search_edit.returnPressed.connect(self.search_data)
         self.all_applications_button.clicked.connect(self.load_all_conversations)
         self.exit_button.clicked.connect(self.close)
-        self.decision_combobox.currentTextChanged.connect(self.handle_decision_change)
         self.back_button.clicked.connect(self.handle_back)
+        self.decision_combobox.currentTextChanged.connect(self.filter_by_decision)
 
         self.load_all_conversations()
-
-    def handle_decision_change(self, text):
-        print(f"Seçilen karar: {text}")
-        self.load_all_conversations()
+        self.load_decision_combobox()
 
     def load_all_conversations(self):
         data = self.sheet_service.read_data(
@@ -74,6 +65,18 @@ class MentorWindow(QtWidgets.QMainWindow):
         )
         self.full_data = data
         self.populate_table(data)
+
+    def load_decision_combobox(self):
+        decision_config = GOOGLE_SHEETS[SheetName.DECISION]
+        data = self.sheet_service.read_data(
+            sheet_id=decision_config["sheet_id"],
+            range_name=decision_config["ranges"]
+        )
+        if data and len(data) > 1:
+            values = [row[0] for row in data[1:] if row and row[0]]
+            self.decision_combobox.clear()
+            self.decision_combobox.addItem("Filtre seçiniz...")
+            self.decision_combobox.addItems(sorted(set(values)))
 
     def search_data(self):
         keyword = self.search_edit.text().lower()
@@ -115,6 +118,24 @@ class MentorWindow(QtWidgets.QMainWindow):
                 self.applications_table.setItem(row_index, col_index, item)
 
         #self.applications_table.resizeColumnsToContents()
+
+    def filter_by_decision(self, decision):
+        if decision == "Filtre seçiniz..." or not decision.strip():
+            self.search_edit.clear()
+            self.search_data()
+            return
+        # Arama kutusuna yazmadan, doğrudan filtrele
+        keyword = decision.lower()
+        all_data = self.full_data
+        if not all_data or len(all_data) < 2:
+            return
+        headers = all_data[0]
+        rows = all_data[1:]
+        filtered = [row for row in rows if keyword in str(row).lower()]
+        if filtered:
+            self.populate_table([headers] + filtered)
+        else:
+            self.populate_table([headers])
 
     # Pencereyi mouse ile taşıma fonksiyonları
     def mousePressEvent(self, event):
