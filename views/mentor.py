@@ -6,35 +6,21 @@ from PyQt6 import QtWidgets, uic
 from PyQt6.QtCore import Qt, QPoint
 from services.google_sheets_service import GoogleSheetsService
 from config import GOOGLE_SHEETS, SheetName
-from PyQt6.QtWidgets import QHeaderView, QAbstractScrollArea, QSizeGrip
 
 class MentorWindow(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, is_admin=False, previous_window=None):
         super().__init__()
         uic.loadUi("ui/mentor.ui", self)
-
-        self.is_admin = False  # veya dışarıdan alınabilir
-
-
-        # Kenarsız ve taşınabilir pencere ayarı
-        self.setWindowFlags(Qt.WindowType.CustomizeWindowHint| 
-                    Qt.WindowType.WindowMinMaxButtonsHint | 
-                    Qt.WindowType.WindowCloseButtonHint)
+        self.is_admin = is_admin
+        self.previous_window = previous_window
 
         self.sheet_service = GoogleSheetsService()
         self.mentor_config = GOOGLE_SHEETS[SheetName.MENTOR]
 
-        # Frameless pencere ayarı
+        # Pencere ayarları
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-
-        # Sürükleme için pozisyon başlangıcı
         self.drag_position = QPoint()
-
-        # Sağ alt köşeye yeniden boyutlandırma aracı ekle
-        self.resize_grip = QSizeGrip(self)
-        self.resize_grip.setStyleSheet("background: transparent;")
-        self.resize_grip.resize(16, 16)
 
         # Arayüz öğeleri
         self.search_edit = self.findChild(QtWidgets.QLineEdit, "search_edit")
@@ -42,10 +28,11 @@ class MentorWindow(QtWidgets.QMainWindow):
         self.all_applications_button = self.findChild(QtWidgets.QPushButton, "all_applications_button")
         self.decision_combobox = self.findChild(QtWidgets.QComboBox, "decision_combobox")
         self.applications_table = self.findChild(QtWidgets.QTableWidget, "applications_table")
+        self.applications_table.verticalHeader().setVisible(False)
+
         self.exit_button = self.findChild(QtWidgets.QPushButton, "exit_button")
         self.back_button = self.findChild(QtWidgets.QPushButton, "back_button")
         self.preferences_button = self.findChild(QtWidgets.QPushButton, "preferences_button")
-
 
         # Bağlantılar
         self.search_button.clicked.connect(self.search_data)
@@ -115,20 +102,24 @@ class MentorWindow(QtWidgets.QMainWindow):
             self.applications_table.insertRow(row_index)
             for col_index, value in enumerate(row_data):
                 item = QtWidgets.QTableWidgetItem(str(value))
+                tooltip_html = f'<div style="max-width:300px; white-space:normal;">{str(value)}</div>'
+                item.setToolTip(tooltip_html)
                 self.applications_table.setItem(row_index, col_index, item)
 
-        #self.applications_table.resizeColumnsToContents()
+        total_width = sum(self.applications_table.columnWidth(i) for i in range(self.applications_table.columnCount()))
+        self.resize(total_width + 50, self.height())
 
     def filter_by_decision(self, decision):
         if decision == "Filtre seçiniz..." or not decision.strip():
             self.search_edit.clear()
             self.search_data()
             return
-        # Arama kutusuna yazmadan, doğrudan filtrele
+
         keyword = decision.lower()
         all_data = self.full_data
         if not all_data or len(all_data) < 2:
             return
+
         headers = all_data[0]
         rows = all_data[1:]
         filtered = [row for row in rows if keyword in str(row).lower()]
@@ -137,7 +128,7 @@ class MentorWindow(QtWidgets.QMainWindow):
         else:
             self.populate_table([headers])
 
-    # Pencereyi mouse ile taşıma fonksiyonları
+    # Pencereyi taşıma
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
             self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
@@ -152,17 +143,16 @@ class MentorWindow(QtWidgets.QMainWindow):
         self.drag_position = None
 
     def handle_back(self):
-        if self.is_admin:
-            from views.preferences_admin import PreferencesAdminWindow
-            self.preferences_window = PreferencesAdminWindow()
-        else:
-            from views.preferences import UserPreferencesWindow
-            self.preferences_window = UserPreferencesWindow()
-        self.preferences_window.show()
+        print("🔙 Geri butonuna basıldı")
+        if self.previous_window:
+            self.previous_window.show()
+            self.previous_window.raise_()
+            self.previous_window.activateWindow()
         self.close()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
+    app.setStyleSheet("QToolTip { background-color: #fff8dc; color: #222; border: 1px solid #a9a9a9; }")
     window = MentorWindow()
     window.show()
     sys.exit(app.exec())

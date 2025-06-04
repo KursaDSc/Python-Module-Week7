@@ -84,7 +84,7 @@ QPushButton:pressed {
           </property>
          </widget>
         </item>
-        <item alignment="Qt::AlignmentFlag::AlignHCenter">
+        <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="labelTitle">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">

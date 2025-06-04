@@ -33,11 +33,11 @@ class AdminPreferencesWindow(QWidget):
         self.close()
 
     def open_mentor_meeting(self):
-        print("👩‍🏫 Mentor Meeting penceresi acilacak")
-        self.mentor_window = MentorWindow()
+        print("👩‍🏫 Mentor Meeting penceresi açılacak")
+        self.mentor_window = MentorWindow(is_admin=True, previous_window=self)
         self.mentor_window.show()
-        self.close()
-
+        self.hide()
+        
     def open_interviews(self):
         print("🗣️ Interviews penceresi acilacak")
         self.interviews_window = InterviewsWindow()

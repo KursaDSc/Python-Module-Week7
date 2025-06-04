@@ -20,7 +20,13 @@ class UserPreferencesWindow(QWidget):
 
         # Butonları bağla 
         self.findChild(QPushButton, "exitButton").clicked.connect(self.exit_app)
-        
+
+    def open_mentor_meeting(self):
+        print("👩‍🏫 Mentor Meeting penceresi açılacak")
+        self.mentor_window = MentorWindow(is_admin=False, previous_window=self)
+        self.mentor_window.show()
+        self.hide()
+     
     def exit_app(self):
         # Uygulamadan çıkış
         print("Application closed.")
