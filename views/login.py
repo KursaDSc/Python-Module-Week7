@@ -1,11 +1,13 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplication
 from PyQt6 import uic
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QThread
+from typing import Optional
 
+from workers.data_loader_worker import DataLoaderWorker
+from widgets.loading import LoadingSpinner
 from services.auth import authenticate
 from views.preferences_admin import AdminPreferencesWindow
 from views.preferences import UserPreferencesWindow
-
 from config import GOOGLE_SHEETS, SheetName
 from services.google_sheets_service import GoogleSheetsService
 
@@ -16,64 +18,74 @@ class LoginWindow(QWidget):
     """
 
     def __init__(self) -> None:
-        """Initialize login window and connect signals to actions."""
+        """
+        Initializes the login window, loads the UI, and connects signals to actions.
+        """
         super().__init__()
-        uic.loadUi(r"ui\login.ui", self)  # Load the UI file
-        self.data = self.get_users_data()
+        uic.loadUi(r"ui/login.ui", self)
+        self.spinner: LoadingSpinner = LoadingSpinner(self)
+        self.spinner.move(150, 150)
+
         # Set frameless and transparent window
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
-        # ✅ Find widgets by name and cast them to appropriate types
+        # Find widgets by name and cast them to appropriate types
         self.loginButton: QPushButton = self.findChild(QPushButton, "loginButton")
         self.exitButton: QPushButton = self.findChild(QPushButton, "exitButton")
         self.usernameField: QLineEdit = self.findChild(QLineEdit, "usernameField")
         self.passwordField: QLineEdit = self.findChild(QLineEdit, "passwordField")
         self.errorlabel: QLabel = self.findChild(QLabel, "errorlabel")
         self.showPasswordCheckBox: QWidget = self.findChild(QWidget, "showPasswordCheckBox")
-        self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)  # Initially hide password
+        self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)
 
         # Connect signals to corresponding methods
         self.showPasswordCheckBox.toggled.connect(self.toggle_password_visibility)
         self.loginButton.clicked.connect(self.login)
         self.exitButton.clicked.connect(self.close_app)
-        
-        
-    def get_users_data(self) -> list[list[str]]:
-        """
-        Fetches user data from the Google Sheets document specified in the configuration.
-
-        Returns:
-            list[list[str]]: A list of rows, each row being a list of string cell values
-                            fetched from the Google Sheet's user data range.
-        """
-        # Initialize Google Sheets service
-        sheet_service = GoogleSheetsService()
-        sheet_id = GOOGLE_SHEETS[SheetName.USERS].get("sheet_id")
-        range_name = GOOGLE_SHEETS[SheetName.USERS].get("range_name", "A1:C100")  # Default range if not specified
-        users = sheet_service.read_data(sheet_id, range_name)
-        return users
-
+        self.passwordField.returnPressed.connect(self.login)  # Enter key triggers login
 
     def login(self) -> None:
         """
         Handles login logic:
-        - Reads user data from Google Sheets.
-        - Validates credentials.
-        - Opens appropriate preferences window based on user role.
+        - Loads user data from Google Sheets in a background thread.
+        - Validates credentials using the loaded user data.
+        - Opens the appropriate preferences window based on user role.
         """
+        # Spinner starts here, just before Google Sheets call
+        self.spinner.start()
+        sheet_service = GoogleSheetsService()
+        sheet_id = GOOGLE_SHEETS[SheetName.USERS].get("sheet_id")
+        range_name = GOOGLE_SHEETS[SheetName.USERS].get("range_name", "A1:C100")
 
-        # Read user data from Google Sheets
+        self.thread = QThread()
+        self.worker = DataLoaderWorker(sheet_service, sheet_id, range_name)
+        self.worker.moveToThread(self.thread)
+        self.thread.started.connect(self.worker.run)
+        self.worker.finished.connect(self.on_data_loaded_for_login)
+        self.worker.finished.connect(self.thread.quit)
+        self.worker.finished.connect(self.worker.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+        self.thread.start()
 
-        if not self.data:
+    def on_data_loaded_for_login(self, data: list[list[str]]) -> None:
+        """
+        Slot called when user data is loaded from Google Sheets for authentication.
+        Validates credentials, and opens the appropriate preferences window.
+        Spinner is stopped only after authentication and before opening the next window.
+        """
+        if not data:
+            self.spinner.stop()
             self.errorlabel.setText("No user data found!")
             return
 
-        user = authenticate(self.usernameField.text(), self.passwordField.text(), self.data)
+        user = authenticate(self.usernameField.text(), self.passwordField.text(), data)
         if user:
             self.errorlabel.setText(f"Login successful! Role: {user.role}")
+            self.spinner.stop()  # Stop spinner just before opening the next window
             self.open_preferences(user.role)
         else:
+            self.spinner.stop()
             self.errorlabel.setText("Invalid username or password!")
             self.usernameField.clear()
             self.passwordField.clear()
@@ -81,7 +93,7 @@ class LoginWindow(QWidget):
     def open_preferences(self, role: str) -> None:
         """
         Opens the appropriate preferences window based on user role.
-        
+
         Args:
             role (str): The role of the user, either "admin" or "user".
         """
@@ -94,20 +106,22 @@ class LoginWindow(QWidget):
         self.close()
 
     def close_app(self) -> None:
-        """Exits the application."""
+        """
+        Exits the application.
+        """
         QApplication.quit()
 
     def toggle_password_visibility(self, checked: bool) -> None:
         """
         Toggles password visibility in the password input field.
-        
+
         Args:
             checked (bool): Whether the checkbox is checked (True to show password).
         """
         if checked:
-            self.passwordField.setEchoMode(QLineEdit.EchoMode.Normal)  # Show password
+            self.passwordField.setEchoMode(QLineEdit.EchoMode.Normal)
         else:
-            self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)  # Hide password
+            self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)
 
 if __name__ == "__main__":
     import sys
