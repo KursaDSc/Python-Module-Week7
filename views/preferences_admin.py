@@ -6,6 +6,7 @@ from views.applications import ApplicationsWindow
 from views.mentor import MentorWindow
 from views.interviews import InterviewsWindow
 from views.applications import ApplicationsWindow
+from views.admin_menu import AdminMenuWindow
 
 class AdminPreferencesWindow(QWidget):
     def __init__(self):
@@ -45,5 +46,8 @@ class AdminPreferencesWindow(QWidget):
         self.close()
 
     def open_admin_menu(self):
-        print("🛠️ Admin Menu zaten acik")
-
+     
+        print("🛠️ Admin Menu açılacak")
+        self.admin_menu = AdminMenuWindow()
+        self.admin_menu.show()
+        self.close()

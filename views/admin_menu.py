@@ -24,6 +24,8 @@ class AdminMenuWindow(QWidget):
         """
         super().__init__()
         uic.loadUi(r"ui\admin_panel.ui", self)  # Load the UI file
+        
+        self.data = self.get_events()
 
         # Frameless pencere ayarı
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
@@ -49,19 +51,24 @@ class AdminMenuWindow(QWidget):
         self.emailButton.clicked.connect(self.send_emails_to_attendees)
         self.returnButton.clicked.connect(self.return_to_preferences)
         self.exitButton.clicked.connect(self.close_app)
-
-    def show_calendar_events(self) -> None:
+        
+    def get_events(self) -> list:
         """
-        Fetches upcoming Google Calendar events and displays them
-        in a table widget. Each row includes event title, start time,
-        attendee email, and organizer email.
+        Fetches upcoming calendar events from Google Calendar.
+
+        Returns:
+            list: A list of event objects containing event details.
         """
         calendar_service = GoogleCalendarService('credentials.json')
         events_raw = calendar_service.list_events(max_results=20)
-        events = [calendar_service.event_from_api(e) for e in events_raw]
+        return [calendar_service.event_from_api(e) for e in events_raw]
 
-        self.activityTable.setRowCount(len(events))
-        for row, event in enumerate(events):
+    def show_calendar_events(self) -> None:
+        """
+        Displays the upcoming calendar events in the activity table.
+        """
+        self.activityTable.setRowCount(len(self.data))
+        for row, event in enumerate(self.data):
             self.activityTable.setItem(row, 0, QTableWidgetItem(event.title))
             self.activityTable.setItem(row, 1, QTableWidgetItem(event.start_time))
             self.activityTable.setItem(row, 2, QTableWidgetItem(event.attendee_email))
@@ -119,12 +126,8 @@ class AdminMenuWindow(QWidget):
         self.drag_position = None
 
     def handle_back(self):
-        if self.is_admin:
-            from views.preferences_admin import PreferencesAdminWindow
-            self.preferences_window = PreferencesAdminWindow()
-        else:
-            from views.preferences import UserPreferencesWindow
-            self.preferences_window = UserPreferencesWindow()
+        from views.preferences_admin import PreferencesAdminWindow
+        self.preferences_window = PreferencesAdminWindow()
         self.preferences_window.show()
         self.close()
 
