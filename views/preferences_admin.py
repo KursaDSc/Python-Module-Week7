@@ -24,7 +24,7 @@ class AdminPreferencesWindow(QWidget):
     def open_applications(self):
         from views.applications import ApplicationsWindow
         print("📦 Applications penceresi acilacak")
-        self.app_window = ApplicationsWindow()
+        self.app_window = ApplicationsWindow(is_admin=True, previous_window=self)
         self.app_window.show()
         self.close()
 
@@ -38,7 +38,7 @@ class AdminPreferencesWindow(QWidget):
     def open_interviews(self):
         from views.interviews import InterviewsWindow
         print("🗣️ Interviews penceresi acilacak")
-        self.interviews_window = InterviewsWindow()
+        self.interviews_window = InterviewsWindow(is_admin=True, previous_window=self)
         self.interviews_window.show()
         self.close()
 
