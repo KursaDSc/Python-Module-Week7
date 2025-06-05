@@ -280,7 +280,7 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
     def return_to_preferences(self):
         """Return to previous menu depending on user role."""
         if self.is_admin:
-            self.pref_window = AdminPreferencesWindow()
+            self.pref_window = UserPreferencesWindow()
         else:
             self.pref_window = UserPreferencesWindow()
         self.pref_window.show()
