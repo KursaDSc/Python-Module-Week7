@@ -7,8 +7,8 @@ from services.google_sheets_service import GoogleSheetsService
 from config import GOOGLE_SHEETS, SheetName
 from views.mentor import MentorWindow
 from views.admin_menu import AdminMenuWindow
-#from views.preferences import UserPreferencesWindow
-#from views.preferences_admin import PreferencesAdminWindow
+from views.preferences import UserPreferencesWindow
+from views.preferences_admin import AdminPreferencesWindow
 
 class ApplicationsWindow(QtWidgets.QMainWindow):
     """
@@ -280,7 +280,7 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
     def return_to_preferences(self):
         """Return to previous menu depending on user role."""
         if self.is_admin:
-            self.pref_window = PreferencesAdminWindow()
+            self.pref_window = AdminPreferencesWindow()
         else:
             self.pref_window = UserPreferencesWindow()
         self.pref_window.show()
