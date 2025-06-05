@@ -24,20 +24,20 @@ class UserPreferencesWindow(QWidget):
         self.findChild(QPushButton, "btn_interviews").clicked.connect(self.open_interviews)
         self.findChild(QPushButton, "exitButton").clicked.connect(self.exit_app)
 
+    def open_applications(self):
+        print("📄 Applications penceresi acilacak")
+        self.applications_window = ApplicationsWindow(is_admin=False, previous_window=self)
+        self.applications_window.show()
+        self.hide()
+    
     def open_mentor_meeting(self):
-        print("👩‍🏫 Mentor Meeting penceresi açılacak")
+        print("👩‍🏫 Mentor Meeting penceresi acilacak")
         self.mentor_window = MentorWindow(is_admin=False, previous_window=self)
         self.mentor_window.show()
         self.hide()
 
-    def open_applications(self):
-        print("📄 Applications penceresi açılacak")
-        self.applications_window = ApplicationsWindow(is_admin=False, previous_window=self)
-        self.applications_window.show()
-        self.hide()
-
     def open_interviews(self):
-        print("🗣️ Interviews penceresi açılacak")
+        print("🗣️ Interviews penceresi acilacak")
         self.interviews_window = InterviewsWindow(is_admin=False, previous_window=self)
         self.interviews_window.show()
         self.hide()
