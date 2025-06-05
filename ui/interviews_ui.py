@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'c:\Users\S\Documents\GitHub\Python-Module-Week7\ui\interviews.ui'
+# Form implementation generated from reading ui file 'c:\Users\Gebruiker\Documents\GitHub\Python-Module-Week7\ui\interviews.ui'
 #
 # Created by: PyQt6 UI code generator 6.9.0
 #
@@ -360,7 +360,7 @@ class Ui_MainWindow(object):
         self.logolabel.setStyleSheet("selection-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));")
         self.logolabel.setText("")
         self.logolabel.setTextFormat(QtCore.Qt.TextFormat.PlainText)
-        self.logolabel.setPixmap(QtGui.QPixmap("c:\\Users\\S\\Documents\\GitHub\\Python-Module-Week7\\ui\\../resorces/logo.png"))
+        self.logolabel.setPixmap(QtGui.QPixmap("c:\\Users\\Gebruiker\\Documents\\GitHub\\Python-Module-Week7\\ui\\../resorces/logo.png"))
         self.logolabel.setScaledContents(True)
         self.logolabel.setObjectName("logolabel")
         self.horizontalLayout.addWidget(self.logolabel)
