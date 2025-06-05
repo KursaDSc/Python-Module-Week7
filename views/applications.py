@@ -20,9 +20,10 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
     - Name-based search
     - Comparison with external VIT lists
     """
-    def __init__(self, is_admin=False):
+    def __init__(self, is_admin=False, previous_window=None):
         super().__init__()
         uic.loadUi("ui/applications.ui", self)
+        self.previous_window = previous_window
 
         self.is_admin = is_admin
 
@@ -279,11 +280,11 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
 
     def return_to_preferences(self):
         """Return to previous menu depending on user role."""
-        if self.is_admin:
-            self.pref_window = AdminPreferencesWindow()
-        else:
-            self.pref_window = UserPreferencesWindow()
-        self.pref_window.show()
+        print("🔙 Geri butonuna basıldı")
+        if self.previous_window:
+            self.previous_window.show()
+            self.previous_window.raise_()
+            self.previous_window.activateWindow()
         self.close()
 
 if __name__ == "__main__":
