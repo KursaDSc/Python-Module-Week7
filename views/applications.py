@@ -287,8 +287,8 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
             self.previous_window.activateWindow()
         self.close()
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = ApplicationsWindow()
     window.show()
-    sys.exit(app.exec())
+    sys.exit(app.exec())"""
