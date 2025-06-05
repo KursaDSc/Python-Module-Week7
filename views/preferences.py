@@ -3,10 +3,6 @@ from PyQt6 import uic
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QApplication
 
-from views.applications import ApplicationsWindow
-from views.mentor import MentorWindow
-from views.interviews import InterviewsWindow
-
 class UserPreferencesWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -25,18 +21,21 @@ class UserPreferencesWindow(QWidget):
         self.findChild(QPushButton, "exitButton").clicked.connect(self.exit_app)
 
     def open_applications(self):
+        from views.applications import ApplicationsWindow  # <-- import buraya taşındı
         print("📄 Applications penceresi acilacak")
         self.applications_window = ApplicationsWindow(is_admin=False, previous_window=self)
         self.applications_window.show()
         self.hide()
     
     def open_mentor_meeting(self):
+        from views.mentor import MentorWindow
         print("👩‍🏫 Mentor Meeting penceresi acilacak")
         self.mentor_window = MentorWindow(is_admin=False, previous_window=self)
         self.mentor_window.show()
         self.hide()
 
     def open_interviews(self):
+        from views.interviews import InterviewsWindow
         print("🗣️ Interviews penceresi acilacak")
         self.interviews_window = InterviewsWindow(is_admin=False, previous_window=self)
         self.interviews_window.show()
@@ -47,11 +46,11 @@ class UserPreferencesWindow(QWidget):
         print("Application closed.")
         self.close()
 
-        if __name__ == "__main__":
-            app = QApplication([])
-            window = UserPreferencesWindow()
-            window.show()
-            app.exec()      
+if __name__ == "__main__":
+    app = QApplication([])
+    window = UserPreferencesWindow()
+    window.show()
+    app.exec()
 # Bu kod, kullanıcı tercihleri penceresini oluşturur ve butonlara tıklama olaylarını bağlar.
 # Kullanıcı tercihleri penceresi, kullanıcıların uygulama ayarlarını yönetebileceği bir arayüz sağlar.
 # Pencere, çerçevesiz ve saydam olarak ayarlanmıştır. Kullanıcı, geri dönme ve çıkış butonlarına tıklayarak ilgili işlemleri gerçekleştirebilir.
