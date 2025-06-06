@@ -2,13 +2,9 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from PyQt6 import QtWidgets, uic
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QPoint
 from services.google_sheets_service import GoogleSheetsService
 from config import GOOGLE_SHEETS, SheetName
-from views.mentor import MentorWindow
-from views.admin_menu import AdminMenuWindow
-from views.preferences import UserPreferencesWindow
-from views.preferences_admin import AdminPreferencesWindow
 
 class ApplicationsWindow(QtWidgets.QMainWindow):
     """
@@ -31,6 +27,11 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         self.sheet_service = GoogleSheetsService()
         self.sheet_config = GOOGLE_SHEETS[SheetName.APPLICATIONS]
 
+        #Pencere ayarları
+        #self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        #self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        #self.drag_position = QPoint()
+
         # UI Elements
         self.search_edit = self.findChild(QtWidgets.QLineEdit, "search_edit")
         self.search_button = self.findChild(QtWidgets.QPushButton, "search_button")
@@ -41,6 +42,7 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         # Dropdown ComboBox for filters
         self.comboBox = self.findChild(QtWidgets.QComboBox, "comboBox")
         self.comboBox.clear()
+        self.comboBox.addItem("--- Seçiniz ---")  # boş ya da uyarı metni
         self.comboBox.addItems([
             "Prev Vit Check",
             "Filtered Applications",
@@ -73,7 +75,7 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         # Load full sheet data into memory
         self.full_data = []
         self.load_data_from_sheet()
-        self.show_all_applications()
+        #self.show_all_applications() sayfa ilk açıldığında tüm app aktif olmasın
 
     def load_data_from_sheet(self):
         """Load spreadsheet data into memory."""
@@ -116,7 +118,8 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         """Live search for name starting with input keyword."""
         keyword = self.search_edit.text().strip().lower()
         if not keyword:
-            self.show_all_applications()
+            self.applications_table.clearContents()
+            self.applications_table.setRowCount(0)
             return
 
         try:
@@ -175,7 +178,11 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         selected_filter = self.comboBox.currentText()
         print(f"ComboBox selection: {selected_filter}")
 
-        if selected_filter == "Prev Vit Check":
+        if selected_filter == "-- Seçiniz --":
+            # Tabloyu temizle ve satır sayısını sıfır yap
+            self.applications_table.clearContents()
+            self.applications_table.setRowCount(0)
+        elif selected_filter == "Prev Vit Check":
             self.show_prev_vit_check()
         elif selected_filter == "Filtered Applications":
             self.show_filtered_applications()
@@ -184,7 +191,6 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         elif selected_filter == "Duplicate Applications":
             self.show_duplicate_applications()
         else:
-            # ComboBox içinde olmayan bir seçim olursa tabloyu temizle veya tümünü göster
             self.applications_table.clearContents()
             self.applications_table.setRowCount(0)
 
