@@ -107,12 +107,16 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         return filtered_rows
 
     def populate_table(self, rows):
-        """Populate table with processed data rows."""
         self.applications_table.clearContents()
         self.applications_table.setRowCount(len(rows))
         for row_idx, row_data in enumerate(rows):
             for col_idx, value in enumerate(row_data):
-                self.applications_table.setItem(row_idx, col_idx, QtWidgets.QTableWidgetItem(value))
+                item = QtWidgets.QTableWidgetItem(value)
+                item.setTextAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)  # Opsiyonel hizalama
+                self.applications_table.setItem(row_idx, col_idx, item)
+
+        self.applications_table.setWordWrap(True)
+        self.applications_table.resizeRowsToContents()
 
     def search_by_name(self):
         """Live search for name starting with input keyword."""
@@ -203,7 +207,6 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
             return
 
         name_idx = 1  # B sütunu: 'Adınız Soyadınız'
-
         name_count = {}
         for row in self.full_data[1:]:
             if len(row) > name_idx:
