@@ -17,6 +17,19 @@ class MentorWindow(QtWidgets.QMainWindow):
         self.sheet_service = GoogleSheetsService()
         self.mentor_config = GOOGLE_SHEETS[SheetName.MENTOR]
 
+        #Çeviri
+        self.header_translation = {
+        "Gorusme tarihi": "Meeting Date",
+        "Mentinın adı soyadı": "Mentee Name",
+        "Mentorin adı-soyadı": "Mentor Name",
+        "IT sektörü hakkında bilgisi": "IT Knowledge",
+        "Eğitimin tamamına katılması": "Participation",
+        "Eğitim hakkındaki düşüncesi": "Feedback",
+        "Katılımcının yoğunluk durumu": "Availability",
+        "Katılımcı hakkında yorum": "Participant Comment"
+    }
+
+
         # Pencere ayarları
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
@@ -62,7 +75,7 @@ class MentorWindow(QtWidgets.QMainWindow):
         if data and len(data) > 1:
             values = [row[0] for row in data[1:] if row and row[0]]
             self.decision_combobox.clear()
-            self.decision_combobox.addItem("Filtre seçiniz...")
+            self.decision_combobox.addItem("Choose Filter...")
             self.decision_combobox.addItems(sorted(set(values)))
 
     def search_data(self):
@@ -93,7 +106,8 @@ class MentorWindow(QtWidgets.QMainWindow):
 
         headers = data[0]
         self.applications_table.setColumnCount(len(headers))
-        self.applications_table.setHorizontalHeaderLabels(headers)
+        translated_headers = [self.header_translation.get(h, h) for h in headers]
+        self.applications_table.setHorizontalHeaderLabels(translated_headers)
 
         if len(data) == 1:
             return
@@ -110,7 +124,7 @@ class MentorWindow(QtWidgets.QMainWindow):
         self.resize(total_width + 50, self.height())
 
     def filter_by_decision(self, decision):
-        if decision == "Filtre seçiniz..." or not decision.strip():
+        if decision == "Choose Filter..." or not decision.strip():
             self.search_edit.clear()
             self.search_data()
             return
