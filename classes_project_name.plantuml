@@ -1,0 +1,219 @@
+@startuml classes_project_name
+set namespaceSeparator none
+class "AdminMenuWindow" as Python-Module-Week7.views.admin_menu.AdminMenuWindow {
+  activityButton
+  activityTable
+  data
+  drag_position : NoneType
+  emailButton
+  exitButton
+  preferences_window
+  resize_grip
+  returnButton
+  spinner
+  thread
+  worker
+  close_app() -> None
+  mouseMoveEvent(event)
+  mousePressEvent(event)
+  mouseReleaseEvent(event)
+  on_emails_sent() -> None
+  on_events_loaded(events_raw: list) -> None
+  return_to_preferences() -> None
+  send_emails_to_attendees() -> None
+  show_calendar_events() -> None
+}
+class "AdminPreferencesWindow" as Python-Module-Week7.views.preferences_admin.AdminPreferencesWindow {
+  admin_menu
+  app_window
+  interviews_window
+  mentor_window
+  open_admin_menu()
+  open_applications()
+  open_interviews()
+  open_mentor_meeting()
+}
+class "Applicant" as Python-Module-Week7.models.applicant.Applicant {
+  application_date : str
+  email : str
+  name : str
+  status : str
+}
+class "ApplicationsWindow" as Python-Module-Week7.views.applications.ApplicationsWindow {
+  all_applications_button
+  applications_table
+  back_button
+  comboBox
+  exit_button
+  full_data : list
+  is_admin : bool
+  mentor_meeting_defined_button
+  mentor_meeting_undefined_button
+  previous_window : NoneType
+  search_button
+  search_edit
+  sheet_config
+  sheet_service
+  table_columns : list
+  apply_combo_filter()
+  get_7_columns_data(rows)
+  load_data_from_sheet()
+  populate_table(rows)
+  return_to_preferences()
+  search_by_name()
+  show_all_applications()
+  show_different_applications()
+  show_duplicate_applications()
+  show_filtered_applications()
+  show_mentor_meeting_defined()
+  show_mentor_meeting_undefined()
+  show_prev_vit_check()
+}
+class "DataLoaderWorker" as Python-Module-Week7.workers.data_loader_worker.DataLoaderWorker {
+  finished
+  range_name
+  sheet_id
+  sheet_service
+  run()
+}
+class "EmailSenderWorker" as Python-Module-Week7.workers.email_sender_worker.EmailSenderWorker {
+  body
+  emails
+  finished
+  send_email_func
+  subject
+  run()
+}
+class "Event" as Python-Module-Week7.models.event.Event {
+  attendee_email : str
+  organizer_email : str
+  start_time : str
+  title : str
+}
+class "GoogleCalendarService" as Python-Module-Week7.services.google_calendar_service.GoogleCalendarService {
+  creds : Credentials
+  service : Resource
+  event_from_api(event_dict)
+  list_events(calendar_id: Optional[str], max_results: int) -> List[dict]
+}
+class "GoogleSheetsService" as Python-Module-Week7.services.google_sheets_service.GoogleSheetsService {
+  creds : Credentials
+  service : Resource
+  sheet
+  append_row(sheet_id, range_name: str, row_data: list[str])
+  read_data(sheet_id, range_name: str) -> list[list[str]]
+  read_filtered_data(sheet_id: str, range_name: str, column_index: int, filter_value: str) -> list[list[str]]
+  update_cell(sheet_id, range_name: str, values: list[list[str]])
+  write_sheet(sheet_id, range_name, values)
+}
+class "InterviewsWindow" as Python-Module-Week7.views.interviews.InterviewsWindow {
+  back_button
+  drag_position : NoneType
+  exit_button
+  full_data
+  interview_table
+  interviews_config
+  is_admin : bool
+  received_button
+  resize_grip
+  search_button
+  search_edit
+  sent_button
+  sheet_config
+  sheet_service
+  window
+  filter_received_projects()
+  filter_sent_projects()
+  go_back()
+  load_data()
+  mouseMoveEvent(event)
+  mousePressEvent(event)
+  mouseReleaseEvent(event)
+  populate_table(data: list)
+  search_data()
+}
+class "LoadingSpinner" as Python-Module-Week7.widgets.loading.LoadingSpinner {
+  movie
+  center_in_parent()
+  start()
+  stop()
+}
+class "LoginWindow" as Python-Module-Week7.views.login.LoginWindow {
+  errorlabel
+  exitButton
+  loginButton
+  passwordField
+  preferences_window
+  showPasswordCheckBox
+  spinner
+  thread
+  usernameField
+  worker
+  close_app() -> None
+  login() -> None
+  on_data_loaded_for_login(data: list[list[str]]) -> None
+  open_preferences(role: str) -> None
+  toggle_password_visibility(checked: bool) -> None
+}
+class "MentorWindow" as Python-Module-Week7.views.mentor.MentorWindow {
+  all_applications_button
+  applications_table
+  back_button
+  decision_combobox
+  drag_position : NoneType
+  exit_button
+  full_data
+  is_admin : bool
+  mentor_config
+  preferences_button
+  previous_window : NoneType
+  search_button
+  search_edit
+  sheet_service
+  filter_by_decision(decision)
+  handle_back()
+  load_all_conversations()
+  load_decision_combobox()
+  mouseMoveEvent(event)
+  mousePressEvent(event)
+  mouseReleaseEvent(event)
+  populate_table(data: list)
+  search_data()
+}
+class "SheetConfig" as Python-Module-Week7.config.SheetConfig {
+  ranges : str
+  sheet_id : str
+}
+class "SheetName" as Python-Module-Week7.config.SheetName {
+  name
+}
+class "SheetsLoaderWorker" as Python-Module-Week7.workers.sheets_loader_worker.SheetsLoaderWorker {
+  finished
+  range_name
+  sheet_id
+  sheet_service
+  run()
+}
+class "User" as Python-Module-Week7.models.user.User {
+  email : str
+  role : str
+  username : str
+}
+class "UserPreferencesWindow" as Python-Module-Week7.views.preferences.UserPreferencesWindow {
+  applications_window
+  interviews_window
+  mentor_window
+  exit_app()
+  open_applications()
+  open_interviews()
+  open_mentor_meeting()
+}
+class "Validator" as Python-Module-Week7.utils.validators.Validator {
+  validate_date(date_str)
+  validate_email(email)
+  validate_name(name)
+  validate_number(number_str)
+  validate_phone(phone)
+  validate_time(time_str)
+}
+@enduml

@@ -1,0 +1,60 @@
+@startuml packages_project_name
+set namespaceSeparator none
+package "Python-Module-Week7" as Python-Module-Week7 {
+}
+package "Python-Module-Week7.config" as Python-Module-Week7.config {
+}
+package "Python-Module-Week7.main" as Python-Module-Week7.main {
+}
+package "Python-Module-Week7.models" as Python-Module-Week7.models {
+}
+package "Python-Module-Week7.models.applicant" as Python-Module-Week7.models.applicant {
+}
+package "Python-Module-Week7.models.event" as Python-Module-Week7.models.event {
+}
+package "Python-Module-Week7.models.user" as Python-Module-Week7.models.user {
+}
+package "Python-Module-Week7.services" as Python-Module-Week7.services {
+}
+package "Python-Module-Week7.services.auth" as Python-Module-Week7.services.auth {
+}
+package "Python-Module-Week7.services.email_service" as Python-Module-Week7.services.email_service {
+}
+package "Python-Module-Week7.services.google_calendar_service" as Python-Module-Week7.services.google_calendar_service {
+}
+package "Python-Module-Week7.services.google_sheets_service" as Python-Module-Week7.services.google_sheets_service {
+}
+package "Python-Module-Week7.utils" as Python-Module-Week7.utils {
+}
+package "Python-Module-Week7.utils.validators" as Python-Module-Week7.utils.validators {
+}
+package "Python-Module-Week7.views" as Python-Module-Week7.views {
+}
+package "Python-Module-Week7.views.admin_menu" as Python-Module-Week7.views.admin_menu {
+}
+package "Python-Module-Week7.views.applications" as Python-Module-Week7.views.applications {
+}
+package "Python-Module-Week7.views.interviews" as Python-Module-Week7.views.interviews {
+}
+package "Python-Module-Week7.views.login" as Python-Module-Week7.views.login {
+}
+package "Python-Module-Week7.views.mentor" as Python-Module-Week7.views.mentor {
+}
+package "Python-Module-Week7.views.preferences" as Python-Module-Week7.views.preferences {
+}
+package "Python-Module-Week7.views.preferences_admin" as Python-Module-Week7.views.preferences_admin {
+}
+package "Python-Module-Week7.widgets" as Python-Module-Week7.widgets {
+}
+package "Python-Module-Week7.widgets.loading" as Python-Module-Week7.widgets.loading {
+}
+package "Python-Module-Week7.workers" as Python-Module-Week7.workers {
+}
+package "Python-Module-Week7.workers.data_loader_worker" as Python-Module-Week7.workers.data_loader_worker {
+}
+package "Python-Module-Week7.workers.email_sender_worker" as Python-Module-Week7.workers.email_sender_worker {
+}
+package "Python-Module-Week7.workers.sheets_loader_worker" as Python-Module-Week7.workers.sheets_loader_worker {
+}
+Python-Module-Week7.main --> Python-Module-Week7.views.login
+@enduml
