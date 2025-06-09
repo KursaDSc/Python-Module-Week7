@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>978</width>
-    <height>600</height>
+    <width>907</width>
+    <height>597</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -201,7 +201,7 @@ color: rgb(0, 0, 0);</string>
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="30,10">
+        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="30,10,0">
          <item>
           <widget class="QLineEdit" name="search_edit">
            <property name="enabled">
@@ -249,6 +249,22 @@ font: italic 8pt &quot;Arial&quot;;
             <string>SEARCH</string>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -328,6 +344,11 @@ font: italic 8pt &quot;Arial&quot;;
            </property>
            <item>
             <property name="text">
+             <string>--- Seçiniz ---</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Prev Vit Check</string>
             </property>
            </item>
@@ -347,6 +368,22 @@ font: italic 8pt &quot;Arial&quot;;
             </property>
            </item>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -905,7 +942,7 @@ QTableCornerButton::section {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>978</width>
+     <width>907</width>
      <height>26</height>
     </rect>
    </property>

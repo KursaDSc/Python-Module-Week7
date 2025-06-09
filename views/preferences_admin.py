@@ -2,12 +2,6 @@ from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplicatio
 from PyQt6 import uic
 from PyQt6.QtCore import Qt
 
-from views.applications import ApplicationsWindow
-from views.mentor import MentorWindow
-from views.interviews import InterviewsWindow
-from views.applications import ApplicationsWindow
-from views.admin_menu import AdminMenuWindow
-
 class AdminPreferencesWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -28,25 +22,28 @@ class AdminPreferencesWindow(QWidget):
        
 
     def open_applications(self):
+        from views.applications import ApplicationsWindow
         print("📦 Applications penceresi acilacak")
-        self.app_window = ApplicationsWindow()
+        self.app_window = ApplicationsWindow(is_admin=True, previous_window=self)
         self.app_window.show()
         self.close()
 
     def open_mentor_meeting(self):
+        from views.mentor import MentorWindow
         print("👩‍🏫 Mentor Meeting penceresi açılacak")
         self.mentor_window = MentorWindow(is_admin=True, previous_window=self)
         self.mentor_window.show()
         self.hide()
         
     def open_interviews(self):
+        from views.interviews import InterviewsWindow
         print("🗣️ Interviews penceresi acilacak")
-        self.interviews_window = InterviewsWindow()
+        self.interviews_window = InterviewsWindow(is_admin=True, previous_window=self)
         self.interviews_window.show()
         self.close()
 
     def open_admin_menu(self):
-     
+        from views.admin_menu import AdminMenuWindow
         print("🛠️ Admin Menu açılacak")
         self.admin_menu = AdminMenuWindow()
         self.admin_menu.show()
