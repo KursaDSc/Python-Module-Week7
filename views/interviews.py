@@ -143,14 +143,21 @@ class InterviewsWindow(QtWidgets.QMainWindow):
         self.populate_table([headers] + filtered if filtered else [headers])
     
     def go_back(self):
-        if self.is_admin:
-            from views.preferences_admin import AdminPreferencesWindow
-            self.window = AdminPreferencesWindow()
-        else:
-            from views.preferences import UserPreferencesWindow
-            self.window = UserPreferencesWindow()
-        self.window.show()
+        print("🔙 Geri butonuna basıldı")
+        if self.previous_window:
+            self.previous_window.show()
+            self.previous_window.raise_()
+            self.previous_window.activateWindow()
         self.close()
+        
+        # if self.is_admin:
+        #     from views.preferences_admin import AdminPreferencesWindow
+        #     self.window = AdminPreferencesWindow()
+        # else:
+        #     from views.preferences import UserPreferencesWindow
+        #     self.window = UserPreferencesWindow()
+        # self.window.show()
+        # self.close()
 
     # Fare ile pencereyi sürüklemek için:
     def mousePressEvent(self, event):
