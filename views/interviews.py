@@ -103,9 +103,9 @@ class InterviewsWindow(QtWidgets.QMainWindow):
             self.interview_table.setColumnCount(0)
             return
 
-        headers = data[0]
-        self.interview_table.setColumnCount(len(headers))
-        self.interview_table.setHorizontalHeaderLabels(headers)
+        # headers = data[0]
+        # self.interview_table.setColumnCount(len(headers))
+        # self.interview_table.setHorizontalHeaderLabels(headers)
 
         for row_idx, row in enumerate(data[1:]):
             self.interview_table.insertRow(row_idx)
