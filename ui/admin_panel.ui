@@ -32,17 +32,15 @@
    <item>
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
-      <string notr="true">QFrame {
-    background-color: #ab94da;
-    border: none;
-	border-radius: 20 px;
-}
+      <string notr="true">background-color: #ab94da;
+border: none; 
+border-radius: 20 px;
 
 
 </string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::StyledPanel</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="10,5,80,5">
       <property name="leftMargin">
@@ -78,11 +76,12 @@
           </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="titleLabel">
           <property name="font">
            <font>
             <pointsize>16</pointsize>
+            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -148,7 +147,7 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string>Display Events</string>
+           <string>🗓️ Display Events</string>
           </property>
          </widget>
         </item>
@@ -192,7 +191,7 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string>Send E-mail</string>
+           <string>📧 Send E-mail</string>
           </property>
          </widget>
         </item>
@@ -293,15 +292,6 @@ QPushButton:pressed {
              </color>
             </brush>
            </colorrole>
-           <colorrole role="PlaceholderText">
-            <brush brushstyle="SolidPattern">
-             <color alpha="128">
-              <red>0</red>
-              <green>0</green>
-              <blue>0</blue>
-             </color>
-            </brush>
-           </colorrole>
           </active>
           <inactive>
            <colorrole role="WindowText">
@@ -382,15 +372,6 @@ QPushButton:pressed {
               <red>249</red>
               <green>249</green>
               <blue>249</blue>
-             </color>
-            </brush>
-           </colorrole>
-           <colorrole role="PlaceholderText">
-            <brush brushstyle="SolidPattern">
-             <color alpha="128">
-              <red>0</red>
-              <green>0</green>
-              <blue>0</blue>
              </color>
             </brush>
            </colorrole>
@@ -477,22 +458,12 @@ QPushButton:pressed {
              </color>
             </brush>
            </colorrole>
-           <colorrole role="PlaceholderText">
-            <brush brushstyle="SolidPattern">
-             <color alpha="128">
-              <red>0</red>
-              <green>0</green>
-              <blue>0</blue>
-             </color>
-            </brush>
-           </colorrole>
           </disabled>
          </palette>
         </property>
         <property name="font">
          <font>
           <pointsize>-1</pointsize>
-          <bold>false</bold>
          </font>
         </property>
         <property name="autoFillBackground">
@@ -515,7 +486,7 @@ QTableWidget {
     font-size: 13px;
     selection-background-color: #00aaff;
     selection-color: black;
-	border-radius: 0px;
+	border-radius: 2px;
     border: none;
 }
 </string>
@@ -580,7 +551,7 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string>Back to Preferences</string>
+           <string>↩ Back to Preferences</string>
           </property>
          </widget>
         </item>
@@ -639,7 +610,7 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string>Exit</string>
+           <string>❌ Exit</string>
           </property>
          </widget>
         </item>
