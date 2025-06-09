@@ -17,7 +17,7 @@ Katılımcılar ile mentorlar arasında yapılan görüşmelerin kaydını tutma
 - **Object-oriented Design (OOP)**
 
 ---
-
+```plaintext
 Python-Module-Week7/
 │
 ├── main.py # Uygulamanın başlangıç noktası
@@ -37,7 +37,7 @@ Python-Module-Week7/
 │
 ├── config.py # Sayfa ve Google Sheet ayarları
 └── README.md # Proje açıklamaları
-
+```
 ---
 
 ## 🧭 Sayfa ve Dosya Açıklamaları
