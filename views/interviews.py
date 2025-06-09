@@ -230,6 +230,7 @@ class InterviewsWindow(QtWidgets.QMainWindow):
         self.sheet_service = GoogleSheetsService()
         self.sheet_config = GOOGLE_SHEETS[SheetName.INTERVIEW]
         self.load_data()
+        
 
     def load_data(self):
         data = self.sheet_service.read_data(
@@ -266,6 +267,7 @@ class InterviewsWindow(QtWidgets.QMainWindow):
         ]
         self.populate_table([headers] + filtered if filtered else [headers])
 
+    
     def go_back(self):
         if self.is_admin:
             from views.preferences_admin import AdminPreferencesWindow
