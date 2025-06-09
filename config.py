@@ -16,6 +16,7 @@ class SheetConfig(TypedDict):
 
 class SheetName(str, Enum):
     APPLICATIONS = "applications"
+    ARCHIVE = "archive"
     MENTOR = "mentor"
     DECISION = "decision"
     INTERVIEW = "interview"
@@ -25,6 +26,10 @@ class SheetName(str, Enum):
 GOOGLE_SHEETS: Dict[SheetName, SheetConfig] = {
     SheetName.APPLICATIONS: {
         "sheet_id": os.getenv("BASVURU_SHEET_ID", ""),
+        "ranges": "Sayfa1!A:U",
+    },
+    SheetName.ARCHIVE: {
+        "sheet_id": os.getenv("YEDEK_SHEET_ID", ""),
         "ranges": "Sayfa1!A:U",
     },
     SheetName.MENTOR: {

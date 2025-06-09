@@ -26,11 +26,12 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         # Initialize Google Sheets service and config
         self.sheet_service = GoogleSheetsService()
         self.sheet_config = GOOGLE_SHEETS[SheetName.APPLICATIONS]
+        self.sheet_config_archive = GOOGLE_SHEETS[SheetName.ARCHIVE]
 
         #Pencere ayarları
-        #self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
-        #self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        #self.drag_position = QPoint()
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.drag_position = QPoint()
 
         # UI Elements
         self.search_edit = self.findChild(QtWidgets.QLineEdit, "search_edit")
@@ -72,9 +73,10 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         self.back_button.clicked.connect(self.return_to_preferences)
         self.exit_button.clicked.connect(self.close)
 
-        # Load full sheet data into memory
+        # Load full sheet data and data atchive memory
         self.full_data = []
         self.load_data_from_sheet()
+        self.full_data_archive = []
         #self.show_all_applications() sayfa ilk açıldığında tüm app aktif olmasın
 
     def load_data_from_sheet(self):
@@ -84,6 +86,14 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
             range_name=self.sheet_config["ranges"]
         )
         self.full_data = data if data and len(data) >= 2 else []
+
+    def load_archive_data_from_sheet(self):
+        """Load spreadsheet data archive into memory."""
+        data_archive = self.sheet_service.read_data(
+            sheet_id=self.sheet_config_archive["sheet_id"],
+            range_name=self.sheet_config_archive["ranges"]
+        )
+        self.full_data_archive = data_archive if data_archive and len(data_archive) >= 2 else []
 
     def get_7_columns_data(self, rows):
         """Extract required 7 columns from each row."""
@@ -182,6 +192,9 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         selected_filter = self.comboBox.currentText()
         print(f"ComboBox selection: {selected_filter}")
 
+        if selected_filter in ["Filtered Applications", "Different Applications"]:
+            self.load_archive_data_from_sheet()
+
         if selected_filter == "-- Seçiniz --":
             # Tabloyu temizle ve satır sayısını sıfır yap
             self.applications_table.clearContents()
@@ -223,43 +236,40 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         self.populate_table(filtered_7cols)
 
     def show_filtered_applications(self):
-        """
-        VIT1 ve VIT2 listelerindeki isimlerle eşleşen başvuruları getirir.
-        Bu isimler gelecekte dış kaynaklı listelerle karşılaştırmak içindir.
-        Şu an her iki liste boştur, bu yüzden sonuç da boştur.
-        """
+
         if not self.full_data or len(self.full_data) < 2:
             return
-
-        vit1 = set()  # Gelecekte eklenecek dış liste
-        vit2 = set()
+        if not self.full_data_archive or len(self.full_data_archive) < 2:
+            return
 
         name_idx = 1  # 'Adınız Soyadınız' sütunu
+        archive_names = {
+            str(row[name_idx]).strip() for row in self.full_data_archive[1:] if len(row) > name_idx
+        }
 
         filtered_rows = [
             row for row in self.full_data[1:]
-            if len(row) > name_idx and str(row[name_idx]).strip() in vit1.union(vit2)
+            if len(row) > name_idx and str(row[name_idx]).strip() in archive_names
         ]
 
         filtered_7cols = self.get_7_columns_data(filtered_rows)
         self.populate_table(filtered_7cols)
 
     def show_different_applications(self):
-        """
-        VIT1 ve VIT2 listelerinde olmayan başvuruları gösterir.
-        Şu an her iki liste boştur, bu yüzden tüm başvurular listelenir.
-        """
+
         if not self.full_data or len(self.full_data) < 2:
             return
-
-        vit1 = set()  # Gelecekte eklenecek dış liste
-        vit2 = set()
+        if not self.full_data_archive or len(self.full_data_archive) < 2:
+            return
 
         name_idx = 1  # 'Adınız Soyadınız' sütunu
+        archive_names = {
+            str(row[name_idx]).strip() for row in self.full_data_archive[1:] if len(row) > name_idx
+        }
 
         filtered_rows = [
             row for row in self.full_data[1:]
-            if len(row) > name_idx and str(row[name_idx]).strip() not in vit1.union(vit2)
+            if len(row) > name_idx and str(row[name_idx]).strip() not in archive_names
         ]
 
         filtered_7cols = self.get_7_columns_data(filtered_rows)
