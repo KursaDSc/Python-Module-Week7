@@ -19,16 +19,15 @@ class MentorWindow(QtWidgets.QMainWindow):
 
         #Çeviri
         self.header_translation = {
-        "Gorusme tarihi": "Meeting Date",
-        "Mentinın adı soyadı": "Mentee Name",
-        "Mentorin adı-soyadı": "Mentor Name",
-        "IT sektörü hakkında bilgisi": "IT Knowledge",
-        "Eğitimin tamamına katılması": "Participation",
-        "Eğitim hakkındaki düşüncesi": "Feedback",
-        "Katılımcının yoğunluk durumu": "Availability",
-        "Katılımcı hakkında yorum": "Participant Comment"
-    }
-
+            "Gorusme tarihi": "Meeting Date",
+            "Mentinin adi soyadi": "Mentee Name",
+            "Mentorün adı-soyadı": "Mentor Name",
+            "Katılımcı IT sektörü hakkında bilgi sahibi mi?": "IT Knowledge",
+            "VIT projesinin tamamına katılması uygun olur": "Participation",
+            "Katılımcı hakkında ne düşünüyorsunuz": "Feedback",
+            "Katilimcinin yogunluk durumu": "Availability",
+            "Katilimci hakkinda yorumlar": "Participant Comment"
+        }
 
         # Pencere ayarları
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
@@ -142,7 +141,6 @@ class MentorWindow(QtWidgets.QMainWindow):
         else:
             self.populate_table([headers])
 
-    # Pencereyi taşıma
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
             self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
