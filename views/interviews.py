@@ -151,20 +151,15 @@ from PyQt6.QtWidgets import QHeaderView, QAbstractScrollArea, QSizeGrip
 
 
 class InterviewsWindow(QtWidgets.QMainWindow):
-    def __init__(self, is_admin=True):
+    def __init__(self, is_admin=False, previous_window=None):
         super().__init__()
-
-        # ------------------------------------------------------------
-        # 1) .ui dosyasının yolunu, bu .py dosyasının bulunduğu klasöre
-        #    göre oluşturuyoruz. Böylece "dosya bulunamadı" veya
-        #    "widget'lar yüklenmedi" hatası ortadan kalkar.
-        # ------------------------------------------------------------
         ui_folder = os.path.join(os.path.dirname(__file__), "ui")
         ui_path = os.path.join(ui_folder, "interviews.ui")
         uic.loadUi("ui/interviews.ui", self)
         # ------------------------------------------------------------
 
-        self.is_admin = False
+        self.is_admin = is_admin
+        self.previous_window = previous_window
 
         # Pencereyi çerçevesiz + transparan yapmak için
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
