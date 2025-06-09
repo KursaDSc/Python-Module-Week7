@@ -95,15 +95,8 @@ Python-Module-Week7/
 
 ## 📸 Ekran Görüntüleri
 
-> Aşağıda örnek arayüz görselleri eklenebilir:
-
 - ![Login Screen](https://github.com/user-attachments/assets/dbe76fcf-f408-408e-b74f-57a006403d74)
-- 
 - ![Mentor_Screen](https://github.com/user-attachments/assets/0bdacc67-7ffc-4d81-85f2-6fa679a20b4d)
-
-- `mentor.ui` tablo ekranı
-- `participant.ui` form ekranı
-
 ---
 
 ## ✅ Yapılabilecek Geliştirmeler
