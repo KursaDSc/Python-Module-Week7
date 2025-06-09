@@ -12,8 +12,8 @@ from PyQt6.QtWidgets import QHeaderView, QAbstractScrollArea, QSizeGrip
 class InterviewsWindow(QtWidgets.QMainWindow):
     def __init__(self, is_admin=False, previous_window=None):
         super().__init__()
-        ui_folder = os.path.join(os.path.dirname(__file__), "ui")
-        ui_path = os.path.join(ui_folder, "interviews.ui")
+        # ui_folder = os.path.join(os.path.dirname(__file__), "ui")
+        # ui_path = os.path.join(ui_folder, "interviews.ui")
         uic.loadUi("ui/interviews.ui", self)
         # ------------------------------------------------------------
 
