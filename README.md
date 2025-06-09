@@ -17,6 +17,8 @@ Katılımcılar ile mentorlar arasında yapılan görüşmelerin kaydını tutma
 - **Object-oriented Design (OOP)**
 
 ---
+
+## 📂 Proje Yapısı
 ```plaintext
 Python-Module-Week7/
 │
