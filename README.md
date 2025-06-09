@@ -97,7 +97,8 @@ Python-Module-Week7/
 
 > Aşağıda örnek arayüz görselleri eklenebilir:
 
-- ![Login Screen](https://prnt.sc/-3pe7BLhejBy)
+- ![Login Screen](https://github.com/user-attachments/assets/e19b85de-be33-4c94-b297-70ec2a1fd600)
+
 - `mentor.ui` tablo ekranı
 - `participant.ui` form ekranı
 
