@@ -99,19 +99,9 @@ Python-Module-Week7/
 - ![Mentor_Screen](https://github.com/user-attachments/assets/0bdacc67-7ffc-4d81-85f2-6fa679a20b4d)
 ---
 
-## ✅ Yapılabilecek Geliştirmeler
-
-- Kullanıcı doğrulama sistemi eklenmesi (şifreli giriş)
-- Google Sheets yerine veritabanı kullanımı (SQLite, PostgreSQL vs.)
-- Çoklu dil desteği (İngilizce/Türkçe)
-- E-posta ile bilgilendirme özelliği
-
----
-
 ## 🤝 Katkı Sağlayanlar
 
-- **@KursaDSc** – Mentor
-- **Katılımcı Ekip** – Kod ve tasarım geliştirmeleri
+- **VIT-7 Team 1**
 
 ---
 
