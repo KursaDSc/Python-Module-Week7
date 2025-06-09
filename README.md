@@ -18,27 +18,25 @@ Katılımcılar ile mentorlar arasında yapılan görüşmelerin kaydını tutma
 
 ---
 
-## 📂 Proje Yapısı
-
 Python-Module-Week7/
-- 
-- ── main.py # Uygulamanın başlangıç noktası
-- ── ui/
--  ├── login.ui # Giriş ekranı arayüzü
--  ├── mentor.ui # Mentor arayüzü
--  ├── participant.ui # Katılımcı arayüzü
-- 
-- ── pages/
--  ├── login_page.py # Giriş ekranı işlemleri
--  ├── mentor_page.py # Mentor ekranı işlemleri
--  └── participant_page.py # Katılımcı ekranı işlemleri
-- 
-- ── services/
--  ├── google_sheets_service.py # Google Sheets verisi okuma/yazma
-- 
-- ── config.py # Sayfa/sheet ayarları
-- └── README.md # Proje açıklamaları
-
+│
+├── main.py # Uygulamanın başlangıç noktası
+│
+├── ui/ # Arayüz dosyaları (.ui formatında)
+│ ├── login.ui # Giriş ekranı arayüzü
+│ ├── mentor.ui # Mentor arayüzü
+│ └── participant.ui # Katılımcı arayüzü
+│
+├── pages/ # Ekranlara ait mantıksal işlemler
+│ ├── login_page.py # Giriş ekranı işlemleri
+│ ├── mentor_page.py # Mentor ekranı işlemleri
+│ └── participant_page.py # Katılımcı ekranı işlemleri
+│
+├── services/ # Harici servisler
+│ └── google_sheets_service.py # Google Sheets ile etkileşim
+│
+├── config.py # Sayfa ve Google Sheet ayarları
+└── README.md # Proje açıklamaları
 
 ---
 
