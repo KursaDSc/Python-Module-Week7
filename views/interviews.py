@@ -257,7 +257,7 @@ class InterviewsWindow(QtWidgets.QMainWindow):
     def search_data(self):
         keyword = self.search_edit.text().lower()
         headers = self.full_data[0]
-        name_column_index = 1  # isim ve soyisimin bulundugu indeks
+        name_column_index = 0  # isim ve soyisimin bulundugu indeks
         filtered = [
             row for row in self.full_data[1:]
             if name_column_index < len(row) and row[name_column_index].lower().startswith(keyword)
