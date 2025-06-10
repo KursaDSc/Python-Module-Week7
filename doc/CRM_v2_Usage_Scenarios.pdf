@@ -1,0 +1,247 @@
+Usage Scenario Documentation: CRM v2 Application
+This document outlines typical usage scenarios for the CRM v2 application, detailing how users interact with various features and functionalities.
+________________________________________
+1. User Login and Access
+Scenario 1.1: Successful User Login
+•	Goal: A standard user successfully logs into the application.
+•	Actor: Registered User
+•	Preconditions: The application is running, and the login window is displayed. A valid user account (username and password) exists in the system.
+	Steps: 
+        1.	The user enters their username in the designated input field.
+        2.	The user enters their password in the designated input field.
+        3.	The user clicks the "Login" (or equivalent) button.
+•	Expected Outcome: 
+    o	A success message is displayed (e.g., "Login Successful!").
+    o	The Login window closes.
+    o	The "Preference - Menu" window opens, displaying "Applications," "Mentor Meeting," and "Interviews" buttons, along with a "Exit" button.
+Scenario 1.2: Successful Admin Login
+•	Goal: An administrator successfully logs into the application.
+•	Actor: Administrator
+•	Preconditions: The application is running, and the login window is displayed. A valid administrator account (username and password) exists in the system.
+•	Steps: 
+        1.	The admin enters their admin username in the designated input field.
+        2.	The admin enters their admin password in the designated input field.
+        3.	The admin clicks the "Login" (or equivalent) button.
+•	Expected Outcome: 
+    o	A success message is displayed (e.g., "Login Successful!").
+    o	The Login window closes.
+    o	The "Preference - Admin Menu" window opens, displaying "Applications," "Mentor Meeting," "Interviews," and "Admin Menu" buttons, along with a " Exit " button.
+Scenario 1.3: Failed Login (Incorrect Credentials)
+•	Goal: A user attempts to log in with incorrect credentials.
+•	Actor: User/Admin
+•	Preconditions: The application is running, and the login window is displayed.
+•	Steps: 
+        1.	The user enters an invalid username or invalid password (or both) in the respective input fields.
+        2.	The user clicks the "Login" (or equivalent) button.
+•	Expected Outcome: 
+    o	A warning message is displayed (e.g., "Invalid Username or Password," "Login Failed!").
+    o	The login window remains open, allowing the user to try again.
+Scenario 1.4: Closing the Application from Login Window
+•	Goal: The user closes the application directly from the login screen.
+•	Actor: User/Admin
+•	Preconditions: The application is running, and the login window is displayed.
+•	Steps: 
+        1.	The user clicks the " Exit " (or equivalent) button on the login window.
+•	Expected Outcome: The application window closes, and the application terminates.
+________________________________________
+2. Preference Menus (User & Admin)
+Scenario 2.1: Navigating from User Preference Menu
+•	Goal: A standard user accesses different application sections from their preference menu.
+•	Actor: Registered User
+•	Preconditions: The user has successfully logged in, and the "Preference - Menu" is displayed.
+•	Steps: 
+        1.	The user clicks the "Applications" button. 
+            	Expected Outcome: The "Applications Page" opens.
+        2.	The user clicks the "Mentor Meeting" button. 
+            	Expected Outcome: The "Mentor Interview Page" opens.
+        3.	The user clicks the "Interviews" button. 
+            	Expected Outcome: The "Interviews Page" opens.
+Scenario 2.2: Navigating from Admin Preference Menu
+•	Goal: An administrator accesses different application sections, including the Admin Menu, from their preference menu.
+•	Actor: Administrator
+•	Preconditions: The admin has successfully logged in, and the "Preference - Admin Menu" is displayed.
+•	Steps: 
+        1.	The admin clicks the "Applications" button. 
+            	Expected Outcome: The "Applications Page" opens.
+        2.	The admin clicks the "Mentor Meeting" button. 
+            	Expected Outcome: The "Mentor Interview Page" opens.
+        3.	The admin clicks the "Interviews" button. 
+            	Expected Outcome: The "Interviews Page" opens.
+        4.	The admin clicks the "Admin Menu" button. 
+            	Expected Outcome: The "Admin Menu" page opens.
+Scenario 2.3: Closing the Application from Preference Menus
+•	Goal: The user/admin closes the application from their respective preference menu.
+•	Actor: User/Admin
+•	Preconditions: The "Preference - Menu" or "Preference - Admin Menu" is displayed.
+•	Steps: 
+        1.	The user/admin clicks the " Exit " button on the preference menu.
+•	Expected Outcome: The application window closes, and the application terminates.
+________________________________________
+3. Applications Page
+Scenario 3.1: Searching for Applications
+•	Goal: A user searches for specific application records.
+•	Actor: User/Admin
+•	Preconditions: The "Applications Page" is displayed.
+•	Steps: 
+        1.	The user enters a search query (e.g., a name, ID) into the input box.
+        2.	The user clicks the "Search" button.
+•	Expected Outcome: The 7-column table displays only the application records that match the search query. If no matches, the table should be empty or display a "No results found" message.
+Scenario 3.2: Viewing All Applications
+•	Goal: A user displays all available application records.
+•	Actor: User/Admin
+•	Preconditions: The "Applications Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "All Applications" button.
+•	Expected Outcome: The 7-column table is populated with all records from the Applications file.
+Scenario 3.3: Viewing Mentor Meeting Defined Applications
+•	Goal: A user views applications where a mentor meeting is defined.
+•	Actor: User/Admin
+•	Preconditions: The "Applications Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "Mentor Meeting Defined" button.
+•	Expected Outcome: The 7-column table displays only the application records where the relevant column indicates a mentor meeting is defined.
+Scenario 3.4: Viewing Mentor Interview Undefined Applications
+•	Goal: A user views applications where a mentor interview is undefined.
+•	Actor: User/Admin
+•	Preconditions: The "Applications Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "Mentor Interview Undefined" button.
+•	Expected Outcome: The 7-column table displays only the application records where the relevant column indicates a mentor interview is undefined.
+Scenario 3.5: Returning to Preferences from Applications Page
+•	Goal: A user navigates back to their respective preference menu.
+•	Actor: User/Admin
+•	Preconditions: The "Applications Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "Return to Preferences Screen" button.
+•	Expected Outcome: 
+        o	If the logged-in user is a standard user, the "Preference - Menu" is displayed.
+        o	If the logged-in user is an admin, the "Preference - Admin Menu" is displayed.
+Scenario 3.6: Viewing VIT1/VIT2 Records (Optional)
+•	Goal: A user views specific VIT1 or VIT2 file records.
+•	Actor: User/Admin
+•	Preconditions: The "Applications Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "Show VIT1 Records" (or equivalent) button. 
+            	Expected Outcome: The table displays records from the VIT1 file.
+        2.	The user clicks the "Show VIT2 Records" (or equivalent) button. 
+            	Expected Outcome: The table displays records from the VIT2 file.
+________________________________________
+4. Mentor Interview Page
+Scenario 4.1: Searching for Mentor Meetings
+•	Goal: A user searches for specific mentor meeting records.
+•	Actor: User/Admin
+•	Preconditions: The "Mentor Interview Page" is displayed.
+•	Steps: 
+        1.	The user enters a search query into the input box.
+        2.	The user clicks the "Search" button.
+•	Expected Outcome: The table displays only the mentor meeting records that match the search query.
+Scenario 4.2: Viewing All Mentor Conversations
+•	Goal: A user displays all mentor conversation records.
+•	Actor: User/Admin
+•	Preconditions: The "Mentor Interview Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "All Conversations" button.
+•	Expected Outcome: The table is populated with all data from the Mentor File.
+Scenario 4.3: Using Multi-Tab (Combobox) to Filter Data
+•	Goal: A user filters mentor meeting data using the multi-tab (combobox) feature.
+•	Actor: User/Admin
+•	Preconditions: The "Mentor Interview Page" is displayed.
+•	Steps: 
+        1.	The user hovers over (or clicks on) the "Multi-Tab" combobox.
+        2.	The user selects an option from the dropdown list (e.g., a specific mentor, a date range).
+•	Expected Outcome: The table dynamically updates to display only the mentor meeting data relevant to the selected option from the Mentor File (specifically from page 2).
+Scenario 4.4: Returning to Preferences from Mentor Interview Page
+•	Goal: A user navigates back to their respective preference menu.
+•	
+o	Actor: User/Admin
+•	Preconditions: The "Mentor Interview Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "Return to Preferences Screen" button.
+•	Expected Outcome: 
+    o	If the logged-in user is a standard user, the "Preference - Menu" is displayed.
+    o	If the logged-in user is an admin, the "Preference - Admin Menu" is displayed.
+________________________________________
+5. Interviews Page
+Scenario 5.1: Searching for Interviews
+•	Goal: A user searches for specific interview records.
+•	Actor: User/Admin
+•	Preconditions: The "Interviews Page" is displayed.
+•	Steps: 
+    1.	The user enters a search query into the input box.
+    2.	The user clicks the "Search" button.
+•	Expected Outcome: The table displays only the interview records that match the search query.
+Scenario 5.2: Viewing Project Submitted Interviews
+•	Goal: A user views interview records where a project has been submitted.
+•	Actor: User/Admin
+•	Preconditions: The "Interviews Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "Project Submitted Button" (assuming there are two with this label, one for submitted and one for not submitted, based on your description).
+•	Expected Outcome: The table displays data from the relevant column in the Interviews File for records where a project is submitted.
+Scenario 5.3: Viewing Project Not Submitted Interviews
+•	Goal: A user views interview records where a project has not been submitted.
+•	Actor: User/Admin
+•	Preconditions: The "Interviews Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "Project Not Submitted Button" (or the second "Project Submitted Button" if it functions as "Not Submitted").
+•	Expected Outcome: The table displays data from the relevant column in the Interviews File for records where a project is not submitted.
+Scenario 5.4: Returning to Preferences from Interviews Page
+•	Goal: A user navigates back to their respective preference menu.
+•	Actor: User/Admin
+•	Preconditions: The "Interviews Page" is displayed.
+•	Steps: 
+        1.	The user clicks the "Return to Preferences Screen" button.
+•	Expected Outcome: 
+        o	If the logged-in user is a standard user, the "Preference - Menu" is displayed.
+        o	If the logged-in user is an admin, the "Preference - Admin Menu" is displayed.
+        ________________________________________
+6. Admin Menu
+Scenario 6.1: Viewing Event Registrations
+•	Goal: An admin views event records from Google Calendar.
+•	Actor: Administrator
+•	Preconditions: The "Admin Menu" is displayed.
+•	Steps: 
+        1.	The admin clicks the "Event Registration Button".
+•	Expected Outcome: The application displays event records from Google Calendar, formatted as "Meeting Title, Start Time, participant e-mail address and organizer e-mail address."
+Scenario 6.2: Sending Emails to Event Participants
+•	Goal: An admin sends emails to participants registered in Google Calendar events.
+•	Actor: Administrator
+•	Preconditions: The "Admin Menu" is displayed.
+•	Steps: 
+        1.	The admin clicks the "Mail Button".
+•	Expected Outcome: Emails are sent to the registered email addresses for events in Google Calendar. Optionally, a message indicating successful email delivery is displayed on the screen.
+Scenario 6.3: Returning to Admin Preferences from Admin Menu
+•	Goal: An admin navigates back to the main admin preference menu.
+•	Actor: Administrator
+•	Preconditions: The "Admin Menu" is displayed.
+•	Steps: 
+        1.	The admin clicks the "Preferences - Return to Admin Screen Button".
+•	Expected Outcome: The "Preference - Admin Menu" is displayed.
+Scenario 6.4: Exiting the Application from Admin Menu
+•	Goal: An admin closes the application from the Admin Menu.
+•	Actor: Administrator
+•	Preconditions: The "Admin Menu" is displayed.
+•	Steps: 
+        1.	The admin clicks the "Exit Button".
+•	Expected Outcome: The application window closes, and the application terminates.
+________________________________________
+7. Application Wide Scenarios
+Scenario 7.1: Consistent UI Experience
+•	Goal: Ensure the application maintains a consistent visual style across all windows.
+•	Actor: All Users
+•	Preconditions: The application is running, and the user is navigating between different windows.
+•	Steps: 
+        1.	Observe the background colors, box edge shapes, button features (hover, pressed, rounded edge), fonts, and text colors.
+•	Expected Outcome: 
+        o	Login window: Has a customized design with specific background colors, box edge shapes, and button styles.
+        o	Preference Menus (User & Admin): Consistently different from the login window in terms of color and format.
+        o	Application Pages (Applications, Mentor Interview, Interviews): Consistently differentiated from previous windows (login, preferences) in terms of color, shape, frame border colors of buttons, and transparent background color of the table.
+        o	Admin Menu: Consistently differentiated from other windows.
+        o	All buttons exhibit consistent hover, pressed, and rounded edge features where applicable.
+        o	Fonts and text colors are used consistently within defined sections.
+Scenario 7.2: Closing Windows with Dedicated Buttons
+•	Goal: The user can close any open application window using a dedicated " Exit " or "Exit" button instead of the default window close button.
+•	Actor: All Users
+•	Preconditions: Any application window (Login, Preference Menus, Applications, Mentor Interview, Interviews, Admin Menu) is open.
+•	Steps: 
+        1.	The user clicks the "Exit" button provided within the application interface on the current window.
+•	Expected Outcome: The current application window closes, and the application terminates.
