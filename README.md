@@ -21,6 +21,7 @@ Katılımcılar ile mentorlar arasında yapılan görüşmelerin kaydını tutma
 ## 📂 Proje Yapısı
 ```plaintext
 Python-Module-Week7/
+
 │
 ├── main.py # Uygulamanın başlangıç noktası
 │
@@ -66,7 +67,6 @@ Python-Module-Week7/
 #### Temel Özellikler:
 - Arama ve filtreleme (isim veya karar bazlı)
 - Google Sheets üzerinden verileri çeker
-- Başlıkları İngilizce'ye çevirir
 - ToolTip ile içerik açıklamaları gösterir
 
 ---
