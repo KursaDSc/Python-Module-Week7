@@ -43,7 +43,7 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         # Dropdown ComboBox for filters
         self.comboBox = self.findChild(QtWidgets.QComboBox, "comboBox")
         self.comboBox.clear()
-        self.comboBox.addItem("--- Seçiniz ---")  # boş ya da uyarı metni
+        self.comboBox.addItem("--- Choose Filter ---")  # boş ya da uyarı metni
         self.comboBox.addItems([
             "Prev Vit Check",
             "Filtered Applications",
@@ -195,7 +195,7 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         if selected_filter in ["Filtered Applications", "Different Applications"]:
             self.load_archive_data_from_sheet()
 
-        if selected_filter == "-- Seçiniz --":
+        if selected_filter == "--- Choose Filter ---":
             # Tabloyu temizle ve satır sayısını sıfır yap
             self.applications_table.clearContents()
             self.applications_table.setRowCount(0)
