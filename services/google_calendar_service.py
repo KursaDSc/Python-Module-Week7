@@ -5,6 +5,8 @@ import os
 from typing import List, Optional
 from models.event import Event
 from utils.validators import Validator
+from datetime import datetime, timezone
+
 
 load_dotenv()
 
@@ -47,6 +49,7 @@ class GoogleCalendarService:
 
         events_result = self.service.events().list(
             calendarId=calendar_id,
+            timeMin=datetime.utcnow().replace(tzinfo=timezone.utc).isoformat(),
             maxResults=max_results,
             singleEvents=True,
             orderBy='startTime'
@@ -57,10 +60,10 @@ class GoogleCalendarService:
     @staticmethod
     def event_from_api(event_dict):
         title = event_dict.get('summary', 'N/A')
-        start_time = event_dict.get('start', {}).get('dateTime', event_dict.get('start', {}).get('date', 'N/A'))
+        start_time = event_dict.get('start', {}).get('dateTime') or event_dict.get('start', {}).get('date', 'N/A')
+        place = event_dict.get('location', 'N/A')
         attendees = event_dict.get('attendees', [])
         attendee_email = attendees[0]['email'] if attendees else 'N/A'
         organizer_email = event_dict.get('organizer', {}).get('email', 'N/A')
-        attendee_email = attendee_email if Validator.validate_email(attendee_email) else 'N/A'
-        organizer_email = organizer_email if Validator.validate_email(organizer_email) else 'N/A'
-        return Event(title, start_time, attendee_email, organizer_email)
+        return Event(title, start_time, place, attendee_email, organizer_email)
+
