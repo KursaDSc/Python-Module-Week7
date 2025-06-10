@@ -34,10 +34,7 @@ class InterviewsWindow(QtWidgets.QMainWindow):
         self.resize_grip.setStyleSheet("background: transparent;")
         self.resize_grip.resize(16, 16)
 
-        # ------------------------------------------------------------
-        # 2) findChild(...) ile UI elemanlarını alırken, mutlaka
-        #    .ui içindeki objectName ile aynısı olsun:
-        # ------------------------------------------------------------
+
         self.search_edit    = self.findChild(QtWidgets.QLineEdit,     "searchBoxLine")
         self.search_button  = self.findChild(QtWidgets.QPushButton,   "searchButton")
         self.back_button    = self.findChild(QtWidgets.QPushButton,   "returnButton")
@@ -63,7 +60,7 @@ class InterviewsWindow(QtWidgets.QMainWindow):
                 "Lütfen interviews.ui içindeki objectName değerlerini ve "
                 "loadUi yolu doğruluğunu kontrol edin."
             )
-        # ------------------------------------------------------------
+        
 
         # Tablo başlık boyutlandırma, kaydırma vb. ayarları
         header = self.interview_table.horizontalHeader()
