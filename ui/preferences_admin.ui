@@ -62,7 +62,7 @@ QPushButton:pressed {
                 </string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
@@ -86,7 +86,7 @@ QPushButton:pressed {
           </property>
          </widget>
         </item>
-        <item alignment="Qt::AlignHCenter">
+        <item alignment="Qt::AlignmentFlag::AlignHCenter">
          <widget class="QLabel" name="label">
           <property name="styleSheet">
            <string notr="true">color: #006400;              /* Çok koyu yeşil: DarkGreen */
@@ -100,20 +100,21 @@ font: bold 16pt &quot;Segoe UI&quot;;  /* Kalın ve 16 punto Segoe UI */
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
+         <widget class="QPushButton" name="btn_exit">
+          <property name="maximumSize">
            <size>
             <width>110</width>
             <height>30</height>
            </size>
           </property>
-         </spacer>
+          <property name="styleSheet">
+           <string notr="true">font-size: 15px;
+padding: 0px;</string>
+          </property>
+          <property name="text">
+           <string>❌ Exit</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -152,7 +153,7 @@ font: bold 16pt &quot;Segoe UI&quot;;  /* Kalın ve 16 punto Segoe UI */
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">font-size: 30px;</string>
           </property>
           <property name="text">
            <string>🛠️ Admin Menu</string>
@@ -180,7 +181,7 @@ font: bold 16pt &quot;Segoe UI&quot;;  /* Kalın ve 16 punto Segoe UI */
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">font-size: 30px;</string>
           </property>
           <property name="text">
            <string>👩‍🏫 Mentor Meeting</string>
@@ -213,7 +214,7 @@ font: bold 16pt &quot;Segoe UI&quot;;  /* Kalın ve 16 punto Segoe UI */
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">font-size: 30px;</string>
           </property>
           <property name="text">
            <string>📦 Applications</string>
@@ -241,7 +242,7 @@ font: bold 16pt &quot;Segoe UI&quot;;  /* Kalın ve 16 punto Segoe UI */
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">font-size: 30px;</string>
           </property>
           <property name="text">
            <string>🗣️ Interviews</string>
@@ -251,24 +252,7 @@ font: bold 16pt &quot;Segoe UI&quot;;  /* Kalın ve 16 punto Segoe UI */
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QPushButton" name="btn_exit">
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>70</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string>❌ Exit</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <layout class="QHBoxLayout" name="horizontalLayout"/>
       </item>
      </layout>
     </widget>
