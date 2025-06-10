@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
+    <width>640</width>
     <height>480</height>
    </rect>
   </property>
@@ -32,9 +32,11 @@
    <item>
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
-      <string notr="true">background-color: #b8b2dc;
-border: none; 
-border-radius: 20 px;
+      <string notr="true">QFrame {
+    background-color: #b8b2dc;
+    border-radius: 10px;
+}
+
 
 
 </string>
