@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QWidget, QPushButton, QTableWidget, QApplication, QTableWidgetItem, QSizeGrip
+from PyQt6.QtWidgets import QWidget, QPushButton,QMessageBox, QTableWidget, QApplication, QTableWidgetItem, QSizeGrip
 from PyQt6 import uic
 from PyQt6.QtCore import Qt, QPoint, QThread
 
@@ -75,39 +75,59 @@ class AdminMenuWindow(QWidget):
         Populates the table and stops the spinner.
         """
         self.spinner.stop()
-        calendar_service = GoogleCalendarService('credentials.json')
-        self.data = [calendar_service.event_from_api(e) for e in events_raw]
+        self.data = [GoogleCalendarService.event_from_api(e) for e in events_raw]
         self.activityTable.setRowCount(len(self.data))
         for row, event in enumerate(self.data):
             self.activityTable.setItem(row, 0, QTableWidgetItem(event.title))
             self.activityTable.setItem(row, 1, QTableWidgetItem(event.start_time))
-            self.activityTable.setItem(row, 2, QTableWidgetItem(event.attendee_email))
-            self.activityTable.setItem(row, 3, QTableWidgetItem(event.organizer_email))
+            self.activityTable.setItem(row, 2, QTableWidgetItem(event.place))  # <-- place/location sütunu
+            self.activityTable.setItem(row, 3, QTableWidgetItem(event.attendee_email))
+            self.activityTable.setItem(row, 4, QTableWidgetItem("vit@werhere.nl"))
+        
+        self.emailButton.setEnabled(bool(self.data))  # Veri varsa butonu aktif et, yoksa pasif et
 
     def send_emails_to_attendees(self) -> None:
         """
-        Collects unique attendee email addresses from the activity table
+        Collects unique attendee email addresses from self.data
         and sends an informational email to each valid address in a background thread.
         """
-        attendee_emails: set[str] = set()
-        row_count: int = self.activityTable.rowCount()
-        for row in range(row_count):
-            email_item = self.activityTable.item(row, 2)
-            if email_item:
-                email = email_item.text().strip()
-                if Validator.validate_email(email):
-                    attendee_emails.add(email)
+        if not hasattr(self, "data") or not self.data:
+            return
 
-        if not attendee_emails:
+        attendee_info = {}
+        for event in self.data:
+            email = getattr(event, "attendee_email", None)
+            if email and Validator.validate_email(email):
+                attendee_info[email] = {
+                    "title": getattr(event, "title", ""),
+                    "start_time": getattr(event, "start_time", ""),
+                    "place": getattr(event, "place", ""),
+                    "organizer": getattr(event, "organizer_email", "vit@werhere.nl"),
+                }
+
+        if not attendee_info:
             return
 
         self.spinner.start()
         self.spinner.center_in_parent()
         self.thread = QThread()
+
+        personalized_emails = []
+        for email, info in attendee_info.items():
+            subject = f"{info['title']} - Etkinlik Bilgilendirmesi"
+            body = (
+                f"Merhaba,\n\n"
+                f"Aşağıdaki etkinliğe davetlisiniz:\n"
+                f"Etkinlik: {info['title']}\n"
+                f"Başlangıç: {info['start_time']}\n"
+                f"Yer: {info['place']}\n"
+                f"Düzenleyen: {info['organizer']}\n\n"
+                f"Katılımınızı bekliyoruz.\n"
+            )
+            personalized_emails.append((email, subject, body))
+
         self.worker = EmailSenderWorker(
-            list(attendee_emails),
-            "Event Notification",
-            "You are invited to the event.",
+            personalized_emails,
             send_email_to
         )
         self.worker.moveToThread(self.thread)
@@ -123,6 +143,7 @@ class AdminMenuWindow(QWidget):
         Called when all emails have been sent. Stops the spinner.
         """
         self.spinner.stop()
+        QMessageBox.information(self, "Success", "Emails have been sent successfully.")
         # Optionally show a message to the user
 
     def return_to_preferences(self) -> None:
