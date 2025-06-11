@@ -297,6 +297,19 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
         filtered_7cols = self.get_7_columns_data(unique_rows)
         self.populate_table(filtered_7cols)
 
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None
+
     def return_to_preferences(self):
         """Return to previous menu depending on user role."""
         print("🔙 Geri butonuna basıldı")
