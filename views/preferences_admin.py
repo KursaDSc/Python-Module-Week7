@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplication
 from PyQt6 import uic
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QPoint
 
 class AdminPreferencesWindow(QWidget):
     def __init__(self):
@@ -12,6 +12,7 @@ class AdminPreferencesWindow(QWidget):
         # Pencereyi cercevesiz ve saydam yap
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.drag_position = QPoint()
 
         # Butonlara tiklandiginda fonksiyonlari bagla
         self.findChild(QPushButton, "btn_applications").clicked.connect(self.open_applications)
@@ -48,3 +49,17 @@ class AdminPreferencesWindow(QWidget):
         self.admin_menu = AdminMenuWindow()
         self.admin_menu.show()
         self.close()
+    
+        # Pencereyi mouse ile taşıma fonksiyonları
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None

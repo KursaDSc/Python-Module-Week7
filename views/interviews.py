@@ -23,6 +23,7 @@ class InterviewsWindow(QtWidgets.QMainWindow):
         # Pencereyi çerçevesiz + transparan yapmak için
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.drag_position = QPoint()
         
         self.sheet_service = GoogleSheetsService()
         self.interviews_config = GOOGLE_SHEETS[SheetName.INTERVIEW]
@@ -200,7 +201,20 @@ class InterviewsWindow(QtWidgets.QMainWindow):
         filtered = [row for row in data if idx < len(row) and row[idx].strip()]
         self.populate_table([headers] + filtered if filtered else [headers])
         
+    # Pencereyi mouse ile taşıma fonksiyonları
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
 
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None
+        
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = InterviewsWindow()

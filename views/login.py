@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplication
 from PyQt6 import uic
-from PyQt6.QtCore import Qt, QThread
+from PyQt6.QtCore import Qt, QThread, QPoint
 from typing import Optional
 
 from workers.data_loader_worker import DataLoaderWorker
@@ -29,6 +29,7 @@ class LoginWindow(QWidget):
         # Set frameless and transparent window
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.drag_position = QPoint()
 
         # Find widgets by name and cast them to appropriate types
         self.loginButton: QPushButton = self.findChild(QPushButton, "loginButton")
@@ -122,6 +123,20 @@ class LoginWindow(QWidget):
             self.passwordField.setEchoMode(QLineEdit.EchoMode.Normal)
         else:
             self.passwordField.setEchoMode(QLineEdit.EchoMode.Password)
+            
+                # Pencereyi mouse ile taşıma fonksiyonları
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None
 
 if __name__ == "__main__":
     import sys

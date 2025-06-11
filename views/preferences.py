@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel
 from PyQt6 import uic
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QPoint
 from PyQt6.QtWidgets import QApplication
 
 class UserPreferencesWindow(QWidget):
@@ -13,6 +13,7 @@ class UserPreferencesWindow(QWidget):
         # Frameless and transparent window
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.drag_position = QPoint()
 
         # Butonları bağla 
         self.findChild(QPushButton, "btn_mentor").clicked.connect(self.open_mentor_meeting)
@@ -45,6 +46,20 @@ class UserPreferencesWindow(QWidget):
         # Uygulamadan çıkış
         print("Application closed.")
         self.close()
+        
+        # Pencereyi mouse ile taşıma fonksiyonları
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None
 
 if __name__ == "__main__":
     app = QApplication([])
