@@ -12,16 +12,18 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_InterviewsWindow(object):
     def setupUi(self, InterviewsWindow):
         InterviewsWindow.setObjectName("InterviewsWindow")
-        InterviewsWindow.resize(530, 480)
-        InterviewsWindow.setMinimumSize(QtCore.QSize(512, 480))
-        InterviewsWindow.setMaximumSize(QtCore.QSize(530, 16777215))
+        InterviewsWindow.resize(640, 480)
+        InterviewsWindow.setMinimumSize(QtCore.QSize(635, 480))
+        InterviewsWindow.setMaximumSize(QtCore.QSize(640, 16777215))
         InterviewsWindow.setStyleSheet("")
         self.verticalLayout = QtWidgets.QVBoxLayout(InterviewsWindow)
         self.verticalLayout.setObjectName("verticalLayout")
         self.frame = QtWidgets.QFrame(parent=InterviewsWindow)
-        self.frame.setStyleSheet("background-color: #ab94da;\n"
-"border: none; \n"
-"border-radius: 20 px;\n"
+        self.frame.setStyleSheet("QFrame {\n"
+"    background-color: #b8b2dc;\n"
+"    border-radius: 10px;\n"
+"}\n"
+"\n"
 "\n"
 "\n"
 "")
@@ -43,9 +45,8 @@ class Ui_InterviewsWindow(object):
         font = QtGui.QFont()
         font.setPointSize(16)
         font.setBold(True)
-        font.setWeight(75)
         self.titleLabel.setFont(font)
-        self.titleLabel.setStyleSheet("color: rgb(255, 255, 255);")
+        self.titleLabel.setStyleSheet("color: #6f56b0;")
         self.titleLabel.setObjectName("titleLabel")
         self.horizontalLayout_5.addWidget(self.titleLabel, 0, QtCore.Qt.AlignmentFlag.AlignHCenter)
         spacerItem = QtWidgets.QSpacerItem(110, 30, QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Minimum)
@@ -70,11 +71,13 @@ class Ui_InterviewsWindow(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #8263c6;\n"
+"    background-color: #f6f6f6;\n"
+"    color: #6f56b0\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: #594097;\n"
+"    color: white\n"
 "}\n"
 "")
         self.activityButton.setObjectName("activityButton")
@@ -82,6 +85,7 @@ class Ui_InterviewsWindow(object):
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.searchLayout.addItem(spacerItem1)
         self.emailButton = QtWidgets.QPushButton(parent=self.frame)
+        self.emailButton.setEnabled(False)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -96,11 +100,13 @@ class Ui_InterviewsWindow(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #8263c6;\n"
+"    background-color: #f6f6f6;\n"
+"    color: #6f56b0\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: #594097;\n"
+"    color: white\n"
 "}\n"
 "")
         self.emailButton.setObjectName("emailButton")
@@ -113,7 +119,7 @@ class Ui_InterviewsWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Active, QtGui.QPalette.ColorRole.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(230, 208, 245))
+        brush = QtGui.QBrush(QtGui.QColor(246, 246, 246))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Active, QtGui.QPalette.ColorRole.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -122,10 +128,10 @@ class Ui_InterviewsWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Active, QtGui.QPalette.ColorRole.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(230, 208, 245))
+        brush = QtGui.QBrush(QtGui.QColor(246, 246, 246))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Active, QtGui.QPalette.ColorRole.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(230, 208, 245))
+        brush = QtGui.QBrush(QtGui.QColor(246, 246, 246))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Active, QtGui.QPalette.ColorRole.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
@@ -137,10 +143,13 @@ class Ui_InterviewsWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(249, 249, 249))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Active, QtGui.QPalette.ColorRole.AlternateBase, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 128))
+        brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
+        palette.setBrush(QtGui.QPalette.ColorGroup.Active, QtGui.QPalette.ColorRole.PlaceholderText, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Inactive, QtGui.QPalette.ColorRole.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(230, 208, 245))
+        brush = QtGui.QBrush(QtGui.QColor(246, 246, 246))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Inactive, QtGui.QPalette.ColorRole.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -149,10 +158,10 @@ class Ui_InterviewsWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Inactive, QtGui.QPalette.ColorRole.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(230, 208, 245))
+        brush = QtGui.QBrush(QtGui.QColor(246, 246, 246))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Inactive, QtGui.QPalette.ColorRole.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(230, 208, 245))
+        brush = QtGui.QBrush(QtGui.QColor(246, 246, 246))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Inactive, QtGui.QPalette.ColorRole.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
@@ -164,10 +173,13 @@ class Ui_InterviewsWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(249, 249, 249))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Inactive, QtGui.QPalette.ColorRole.AlternateBase, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 128))
+        brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
+        palette.setBrush(QtGui.QPalette.ColorGroup.Inactive, QtGui.QPalette.ColorRole.PlaceholderText, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Disabled, QtGui.QPalette.ColorRole.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(230, 208, 245))
+        brush = QtGui.QBrush(QtGui.QColor(246, 246, 246))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Disabled, QtGui.QPalette.ColorRole.Button, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
@@ -176,10 +188,10 @@ class Ui_InterviewsWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Disabled, QtGui.QPalette.ColorRole.ButtonText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(230, 208, 245))
+        brush = QtGui.QBrush(QtGui.QColor(246, 246, 246))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Disabled, QtGui.QPalette.ColorRole.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(230, 208, 245))
+        brush = QtGui.QBrush(QtGui.QColor(246, 246, 246))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Disabled, QtGui.QPalette.ColorRole.Window, brush)
         brush = QtGui.QBrush(QtGui.QColor(0, 170, 255))
@@ -191,6 +203,9 @@ class Ui_InterviewsWindow(object):
         brush = QtGui.QBrush(QtGui.QColor(249, 249, 249))
         brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
         palette.setBrush(QtGui.QPalette.ColorGroup.Disabled, QtGui.QPalette.ColorRole.AlternateBase, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 128))
+        brush.setStyle(QtCore.Qt.BrushStyle.SolidPattern)
+        palette.setBrush(QtGui.QPalette.ColorGroup.Disabled, QtGui.QPalette.ColorRole.PlaceholderText, brush)
         self.activityTable.setPalette(palette)
         font = QtGui.QFont()
         font.setPointSize(-1)
@@ -205,7 +220,7 @@ class Ui_InterviewsWindow(object):
 "}\n"
 "\n"
 "QTableWidget {\n"
-"    background-color: #e6d0f5;  /* Hücrelerin arka planı */\n"
+"    background-color: #f6f6f6;  /* Hücrelerin arka planı */\n"
 "    color: black;               /* Yazı rengi */\n"
 "    gridline-color: #b58cd9;    /* Hücre çizgi rengi */\n"
 "    alternate-background-color: #f9f9f9;    \n"
@@ -216,8 +231,9 @@ class Ui_InterviewsWindow(object):
 "    border: none;\n"
 "}\n"
 "")
+        self.activityTable.setFrameShape(QtWidgets.QFrame.Shape.Box)
         self.activityTable.setObjectName("activityTable")
-        self.activityTable.setColumnCount(4)
+        self.activityTable.setColumnCount(5)
         self.activityTable.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.activityTable.setHorizontalHeaderItem(0, item)
@@ -227,7 +243,13 @@ class Ui_InterviewsWindow(object):
         self.activityTable.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.activityTable.setHorizontalHeaderItem(3, item)
-        self.activityTable.horizontalHeader().setDefaultSectionSize(116)
+        item = QtWidgets.QTableWidgetItem()
+        self.activityTable.setHorizontalHeaderItem(4, item)
+        self.activityTable.horizontalHeader().setCascadingSectionResizes(True)
+        self.activityTable.horizontalHeader().setDefaultSectionSize(100)
+        self.activityTable.horizontalHeader().setStretchLastSection(True)
+        self.activityTable.verticalHeader().setHighlightSections(True)
+        self.activityTable.verticalHeader().setMinimumSectionSize(20)
         self.verticalLayout_3.addWidget(self.activityTable)
         self.bottomLayout = QtWidgets.QHBoxLayout()
         self.bottomLayout.setObjectName("bottomLayout")
@@ -247,11 +269,13 @@ class Ui_InterviewsWindow(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #8263c6;\n"
+"    background-color: #f6f6f6;\n"
+"    color: #6f56b0\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: #594097;\n"
+"    color: white\n"
 "}\n"
 "")
         self.returnButton.setObjectName("returnButton")
@@ -275,11 +299,13 @@ class Ui_InterviewsWindow(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #8263c6;\n"
+"    background-color: #f6f6f6;\n"
+"    color: #6f56b0\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
 "    background-color: #594097;\n"
+"    color: white\n"
 "}\n"
 "")
         self.exitButton.setObjectName("exitButton")
@@ -305,8 +331,10 @@ class Ui_InterviewsWindow(object):
         item = self.activityTable.horizontalHeaderItem(1)
         item.setText(_translate("InterviewsWindow", "Start Time"))
         item = self.activityTable.horizontalHeaderItem(2)
-        item.setText(_translate("InterviewsWindow", "Participant Email"))
+        item.setText(_translate("InterviewsWindow", "Place"))
         item = self.activityTable.horizontalHeaderItem(3)
+        item.setText(_translate("InterviewsWindow", "Participant Email"))
+        item = self.activityTable.horizontalHeaderItem(4)
         item.setText(_translate("InterviewsWindow", "Organizer Email"))
         self.returnButton.setText(_translate("InterviewsWindow", "↩ Back to Preferences"))
         self.exitButton.setText(_translate("InterviewsWindow", "❌ Exit"))
