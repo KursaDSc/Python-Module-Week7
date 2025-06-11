@@ -1,4 +1,4 @@
-@startuml packages_project_name
+@startuml packages_Crm
 set namespaceSeparator none
 package "Python-Module-Week7" as Python-Module-Week7 {
 }

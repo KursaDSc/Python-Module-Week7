@@ -1,4 +1,4 @@
-@startuml classes_project_name
+@startuml classes_Crm
 set namespaceSeparator none
 class "AdminMenuWindow" as Python-Module-Week7.views.admin_menu.AdminMenuWindow {
   activityButton
@@ -26,8 +26,12 @@ class "AdminMenuWindow" as Python-Module-Week7.views.admin_menu.AdminMenuWindow 
 class "AdminPreferencesWindow" as Python-Module-Week7.views.preferences_admin.AdminPreferencesWindow {
   admin_menu
   app_window
+  drag_position : NoneType
   interviews_window
   mentor_window
+  mouseMoveEvent(event)
+  mousePressEvent(event)
+  mouseReleaseEvent(event)
   open_admin_menu()
   open_applications()
   open_interviews()
@@ -44,8 +48,10 @@ class "ApplicationsWindow" as Python-Module-Week7.views.applications.Application
   applications_table
   back_button
   comboBox
+  drag_position : NoneType
   exit_button
   full_data : list
+  full_data_archive : list
   is_admin : bool
   mentor_meeting_defined_button
   mentor_meeting_undefined_button
@@ -53,11 +59,16 @@ class "ApplicationsWindow" as Python-Module-Week7.views.applications.Application
   search_button
   search_edit
   sheet_config
+  sheet_config_archive
   sheet_service
   table_columns : list
   apply_combo_filter()
   get_7_columns_data(rows)
+  load_archive_data_from_sheet()
   load_data_from_sheet()
+  mouseMoveEvent(event)
+  mousePressEvent(event)
+  mouseReleaseEvent(event)
   populate_table(rows)
   return_to_preferences()
   search_by_name()
@@ -77,16 +88,15 @@ class "DataLoaderWorker" as Python-Module-Week7.workers.data_loader_worker.DataL
   run()
 }
 class "EmailSenderWorker" as Python-Module-Week7.workers.email_sender_worker.EmailSenderWorker {
-  body
-  emails
   finished
+  personalized_emails
   send_email_func
-  subject
   run()
 }
 class "Event" as Python-Module-Week7.models.event.Event {
   attendee_email : str
   organizer_email : str
+  place : str
   start_time : str
   title : str
 }
@@ -114,6 +124,7 @@ class "InterviewsWindow" as Python-Module-Week7.views.interviews.InterviewsWindo
   interview_table
   interviews_config
   is_admin : bool
+  previous_window : NoneType
   received_button
   resize_grip
   search_button
@@ -121,7 +132,6 @@ class "InterviewsWindow" as Python-Module-Week7.views.interviews.InterviewsWindo
   sent_button
   sheet_config
   sheet_service
-  window
   filter_received_projects()
   filter_sent_projects()
   go_back()
@@ -139,6 +149,7 @@ class "LoadingSpinner" as Python-Module-Week7.widgets.loading.LoadingSpinner {
   stop()
 }
 class "LoginWindow" as Python-Module-Week7.views.login.LoginWindow {
+  drag_position : NoneType
   errorlabel
   exitButton
   loginButton
@@ -151,6 +162,9 @@ class "LoginWindow" as Python-Module-Week7.views.login.LoginWindow {
   worker
   close_app() -> None
   login() -> None
+  mouseMoveEvent(event)
+  mousePressEvent(event)
+  mouseReleaseEvent(event)
   on_data_loaded_for_login(data: list[list[str]]) -> None
   open_preferences(role: str) -> None
   toggle_password_visibility(checked: bool) -> None
@@ -163,6 +177,7 @@ class "MentorWindow" as Python-Module-Week7.views.mentor.MentorWindow {
   drag_position : NoneType
   exit_button
   full_data
+  header_translation : dict
   is_admin : bool
   mentor_config
   preferences_button
@@ -201,9 +216,13 @@ class "User" as Python-Module-Week7.models.user.User {
 }
 class "UserPreferencesWindow" as Python-Module-Week7.views.preferences.UserPreferencesWindow {
   applications_window
+  drag_position : NoneType
   interviews_window
   mentor_window
   exit_app()
+  mouseMoveEvent(event)
+  mousePressEvent(event)
+  mouseReleaseEvent(event)
   open_applications()
   open_interviews()
   open_mentor_meeting()

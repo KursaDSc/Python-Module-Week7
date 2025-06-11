@@ -169,10 +169,10 @@ class AdminMenuWindow(QWidget):
     def mouseReleaseEvent(self, event):
         self.drag_position = None
 
-if __name__ == "__main__":
-    import sys, os
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-    app = QApplication(sys.argv)
-    window = AdminMenuWindow()
-    window.show()
-    sys.exit(app.exec())
+# if __name__ == "__main__":
+#     import sys, os
+#     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+#     app = QApplication(sys.argv)
+#     window = AdminMenuWindow()
+#     window.show()
+#     sys.exit(app.exec())
