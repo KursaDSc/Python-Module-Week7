@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
-    <height>597</height>
+    <width>908</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,12 +15,6 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>904</width>
-    <height>16777215</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -951,7 +945,7 @@ QTableCornerButton::section {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>850</width>
+     <width>908</width>
      <height>26</height>
     </rect>
    </property>
