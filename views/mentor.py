@@ -23,10 +23,10 @@ class MentorWindow(QtWidgets.QMainWindow):
             "Mentinin adi soyadi": "Mentee Name",
             "Mentorün adı-soyadı": "Mentor Name",
             "Katılımcı IT sektörü hakkında bilgi sahibi mi?": "IT Knowledge",
-            "VIT projesinin tamamına katılması uygun olur": "Participation",
+            "VIT projesinin tamamına katılması uygun olur": "Decision",
             "Katılımcı hakkında ne düşünüyorsunuz": "Feedback",
             "Katilimcinin yogunluk durumu": "Availability",
-            "Katilimci hakkinda yorumlar": "Participant Comment"
+            "Katilimci hakkinda yorumlar": "Comment"
         }
 
         # Pencere ayarları
