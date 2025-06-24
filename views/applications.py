@@ -6,6 +6,12 @@ from PyQt6.QtCore import Qt, QPoint
 from services.google_sheets_service import GoogleSheetsService
 from config import GOOGLE_SHEETS, SheetName
 
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 class ApplicationsWindow(QtWidgets.QMainWindow):
     """
     Main window for viewing and filtering application data from Google Sheets.
@@ -18,7 +24,7 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
     """
     def __init__(self, is_admin=False, previous_window=None):
         super().__init__()
-        uic.loadUi("ui/applications.ui", self)
+        uic.loadUi(resource_path("ui/applications.uii"), self)
         self.previous_window = previous_window
 
         self.is_admin = is_admin
@@ -319,8 +325,8 @@ class ApplicationsWindow(QtWidgets.QMainWindow):
             self.previous_window.activateWindow()
         self.close()
 
-"""if __name__ == "__main__":
+if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = ApplicationsWindow()
     window.show()
-    sys.exit(app.exec())"""
+    sys.exit(app.exec())

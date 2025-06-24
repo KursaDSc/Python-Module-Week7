@@ -7,3 +7,6 @@ __pycache__/
 x.ipynb
 .env
 credentials.json
+db_credentials.json
+**/qwindow.py
+create_tables.sql

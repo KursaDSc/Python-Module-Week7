@@ -7,6 +7,7 @@ load_dotenv()
 
 
 SERVICE_ACCOUNT_FILE = 'credentials.json'
+DATABASE_CONNECTION_FILE = 'db_credentials.json'
 
 
 class SheetConfig(TypedDict):

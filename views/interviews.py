@@ -9,12 +9,18 @@ from config import GOOGLE_SHEETS, SheetName
 from PyQt6.QtWidgets import QHeaderView, QAbstractScrollArea, QSizeGrip
 
 
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 class InterviewsWindow(QtWidgets.QMainWindow):
     def __init__(self, is_admin=False, previous_window=None):
         super().__init__()
         # ui_folder = os.path.join(os.path.dirname(__file__), "ui")
         # ui_path = os.path.join(ui_folder, "interviews.ui")
-        uic.loadUi("ui/interviews.ui", self)
+        uic.loadUi(resource_path("ui/interviews.ui"), self)
         # ------------------------------------------------------------
 
         self.is_admin = is_admin

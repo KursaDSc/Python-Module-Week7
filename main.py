@@ -1,18 +1,21 @@
 import sys
 from PyQt6.QtWidgets import QApplication
-from views.login import LoginWindow
 
-app = QApplication(sys.argv)
-
-# Tooltip stilini tüm uygulama için ayarla
-app.setStyleSheet("""
-    QToolTip {
-        background-color: #fff8dc;
+def main():
+    from views.login import LoginWindow
+    app = QApplication(sys.argv)
+    app.setStyleSheet("""
+        QToolTip {
+            background-color: #fff8dc;
         color: #222;
         border: 1px solid #a9a9a9;
-    }
-""")
+        }
+    """)
+    # Uygulama başlatma
+    window = LoginWindow()
+    window.show()
+    sys.exit(app.exec())
 
-window = LoginWindow()
-window.show()
-sys.exit(app.exec())
+if __name__ == "__main__":
+    main()
+    

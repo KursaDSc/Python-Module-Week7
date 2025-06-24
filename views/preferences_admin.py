@@ -1,13 +1,19 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplication
 from PyQt6 import uic
-from PyQt6.QtCore import Qt, QPoint
+from PyQt6.QtCore import Qt, QPoint 
+import sys
+import os
+
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 class AdminPreferencesWindow(QWidget):
     def __init__(self):
         super().__init__()
-
-        # UI dosyasini yukle
-        uic.loadUi(r"ui/preferences_admin.ui", self)
+        uic.loadUi(resource_path("ui/preferences_admin.ui"), self)        
 
         # Pencereyi cercevesiz ve saydam yap
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)

@@ -7,10 +7,16 @@ from PyQt6.QtCore import Qt, QPoint
 from services.google_sheets_service import GoogleSheetsService
 from config import GOOGLE_SHEETS, SheetName
 
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 class MentorWindow(QtWidgets.QMainWindow):
     def __init__(self, is_admin=False, previous_window=None):
         super().__init__()
-        uic.loadUi("ui/mentor.ui", self)
+        uic.loadUi(resource_path("ui/mentor.uii"), self)
         self.is_admin = is_admin
         self.previous_window = previous_window
 

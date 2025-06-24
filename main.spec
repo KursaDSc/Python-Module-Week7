@@ -1,23 +1,14 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-from PyInstaller.utils.hooks import collect_data_files
-
-datas = []
-datas += collect_data_files('ui')
-datas += collect_data_files('services')
-datas += collect_data_files('models')
-datas += collect_data_files('resorces')
-datas += collect_data_files('utils')
-datas += collect_data_files('views')
-datas += collect_data_files('widgets')
-datas += collect_data_files('workers')
 
 a = Analysis(
     ['main.py'],
-    pathex=[],
+    pathex=['./views'],
     binaries=[],
-    datas=datas,
-    hiddenimports=[],
+    datas=[
+        ('views/*.py', 'views'),
+    ],
+    hiddenimports=['views', 'views.login'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

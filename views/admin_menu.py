@@ -13,6 +13,15 @@ from utils.validators import Validator
 from services.google_calendar_service import GoogleCalendarService
 from services.email_service import send_email_to
 
+import sys
+import os
+
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
 class AdminMenuWindow(QWidget):
     """
     Admin panel window for managing calendar events and sending emails.
@@ -24,7 +33,7 @@ class AdminMenuWindow(QWidget):
         and connects UI buttons to corresponding event handler methods.
         """
         super().__init__()
-        uic.loadUi(r"ui/admin_panel.ui", self)
+        uic.loadUi(resource_path("ui/admin_panel.ui"), self)
         self.spinner = LoadingSpinner(self)
         self.spinner.center_in_parent()
 
@@ -169,10 +178,10 @@ class AdminMenuWindow(QWidget):
     def mouseReleaseEvent(self, event):
         self.drag_position = None
 
-# if __name__ == "__main__":
-#     import sys, os
-#     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-#     app = QApplication(sys.argv)
-#     window = AdminMenuWindow()
-#     window.show()
-#     sys.exit(app.exec())
+if __name__ == "__main__":
+    import sys, os
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    app = QApplication(sys.argv)
+    window = AdminMenuWindow()
+    window.show()
+    sys.exit(app.exec())

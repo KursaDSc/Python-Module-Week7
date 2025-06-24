@@ -1,15 +1,17 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel, QApplication
 from PyQt6 import uic
 from PyQt6.QtCore import Qt, QThread, QPoint
-from typing import Optional
-
-from workers.data_loader_worker import DataLoaderWorker
+from workers.data_loader_worker import DatabaseAuthWorker
 from widgets.loading import LoadingSpinner
-from services.auth import authenticate
-from views.preferences_admin import AdminPreferencesWindow
-from views.preferences import UserPreferencesWindow
-from config import GOOGLE_SHEETS, SheetName
-from services.google_sheets_service import GoogleSheetsService
+import sys
+import os
+
+
+def resource_path(relative_path):
+    """Get absolute path to resource, works for dev and for PyInstaller."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 class LoginWindow(QWidget):
     """
@@ -22,7 +24,7 @@ class LoginWindow(QWidget):
         Initializes the login window, loads the UI, and connects signals to actions.
         """
         super().__init__()
-        uic.loadUi(r"ui/login.ui", self)
+        uic.loadUi(resource_path("ui/login.ui"), self)
         self.spinner: LoadingSpinner = LoadingSpinner(self)
         self.spinner.move(150, 150)
 
@@ -48,45 +50,37 @@ class LoginWindow(QWidget):
 
     def login(self) -> None:
         """
-        Handles login logic:
-        - Loads user data from Google Sheets in a background thread.
-        - Validates credentials using the loaded user data.
+        Handles login logic with database authentication:
+        - Runs database query in a background thread.
+        - Validates credentials using the returned user row.
         - Opens the appropriate preferences window based on user role.
         """
-        # Spinner starts here, just before Google Sheets call
         self.spinner.start()
-        sheet_service = GoogleSheetsService()
-        sheet_id = GOOGLE_SHEETS[SheetName.USERS].get("sheet_id")
-        range_name = GOOGLE_SHEETS[SheetName.USERS].get("range_name", "A1:C100")
+        
+        # Hazırlanan sorgu
+        username = self.usernameField.text()
+        password = self.passwordField.text()
+
+        query = "SELECT kullaniciadi, parola, yetki FROM kullanicilar WHERE kullaniciadi = %s"
+        params = (username,)
 
         self.thread = QThread()
-        self.worker = DataLoaderWorker(sheet_service, sheet_id, range_name)
+        self.worker = DatabaseAuthWorker(query, params, password)
         self.worker.moveToThread(self.thread)
         self.thread.started.connect(self.worker.run)
-        self.worker.finished.connect(self.on_data_loaded_for_login)
+        self.worker.finished.connect(self.on_user_authenticated)
         self.worker.finished.connect(self.thread.quit)
         self.worker.finished.connect(self.worker.deleteLater)
         self.thread.finished.connect(self.thread.deleteLater)
         self.thread.start()
 
-    def on_data_loaded_for_login(self, data: list[list[str]]) -> None:
-        """
-        Slot called when user data is loaded from Google Sheets for authentication.
-        Validates credentials, and opens the appropriate preferences window.
-        Spinner is stopped only after authentication and before opening the next window.
-        """
-        if not data:
-            self.spinner.stop()
-            self.errorlabel.setText("No user data found!")
-            return
+    def on_user_authenticated(self, user) -> None:
+        self.spinner.stop()
 
-        user = authenticate(self.usernameField.text(), self.passwordField.text(), data)
         if user:
             self.errorlabel.setText(f"Login successful! Role: {user.role}")
-            self.spinner.stop()  # Stop spinner just before opening the next window
             self.open_preferences(user.role)
         else:
-            self.spinner.stop()
             self.errorlabel.setText("Invalid username or password!")
             self.usernameField.clear()
             self.passwordField.clear()
@@ -98,6 +92,9 @@ class LoginWindow(QWidget):
         Args:
             role (str): The role of the user, either "admin" or "user".
         """
+        from views.preferences_admin import AdminPreferencesWindow
+        from views.preferences import UserPreferencesWindow
+        
         if role == "admin":
             self.preferences_window = AdminPreferencesWindow()
         else:

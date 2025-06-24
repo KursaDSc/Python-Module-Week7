@@ -1,17 +1,17 @@
 from PyQt6.QtCore import QObject, pyqtSignal
+from services.auth import authenticate
+from services.db import get_data
 
-class DataLoaderWorker(QObject):
-    finished = pyqtSignal(list)
+class DatabaseAuthWorker(QObject):
+    finished = pyqtSignal(object)
 
-    def __init__(self, sheet_service, sheet_id, range_name):
+    def __init__(self, query, params, password_input):
         super().__init__()
-        self.sheet_service = sheet_service
-        self.sheet_id = sheet_id
-        self.range_name = range_name
+        self.query = query
+        self.params = params
+        self.password_input = password_input
 
     def run(self):
-        users = self.sheet_service.read_data(self.sheet_id, self.range_name)
-        if users:
-            self.finished.emit(users[1:])  # Skip header
-        else:
-            self.finished.emit([])
+        row = get_data(self.query, self.params)  # ('john', 'hashed_pass', 'admin') gibi bir tuple
+        user = authenticate(self.params[0], self.password_input, row)
+        self.finished.emit(user)
