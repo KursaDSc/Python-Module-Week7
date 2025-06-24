@@ -34,6 +34,7 @@ def get_data_list(query, params=None):
 def get_data(query, params=None):
     """Execute query and return a single record."""
     creds = get_credentials()
+    print("Database credentials:", creds)
     if not creds:
         return None
     result = None

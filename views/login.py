@@ -61,7 +61,9 @@ class LoginWindow(QWidget):
         username = self.usernameField.text()
         password = self.passwordField.text()
 
-        query = "SELECT kullaniciadi, parola, yetki FROM kullanicilar WHERE kullaniciadi = %s"
+        query = """SELECT kullaniciadi, parola, yetki 
+                   FROM kullanicilar 
+                   WHERE kullaniciadi = %s"""
         params = (username,)
 
         self.thread = QThread()
