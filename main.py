@@ -1,4 +1,4 @@
-import sys
+mport sys
 from PyQt6.QtWidgets import QApplication
 
 def main():

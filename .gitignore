@@ -6,7 +6,7 @@ __pycache__/
 **/themes/
 x.ipynb
 .env
-credentials.json
+
 db_credentials.json
 **/qwindow.py
 create_tables.sql
