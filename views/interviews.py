@@ -1,12 +1,10 @@
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from PyQt6 import QtWidgets, uic
 from PyQt6.QtCore import Qt, QPoint
-from services.google_sheets_service import GoogleSheetsService
-from config import GOOGLE_SHEETS, SheetName
 from PyQt6.QtWidgets import QHeaderView, QAbstractScrollArea, QSizeGrip
+from services.db import get_data_list
 
 
 def resource_path(relative_path):
@@ -19,7 +17,7 @@ class InterviewsWindow(QtWidgets.QMainWindow):
     def __init__(self, is_admin=False, previous_window=None):
         super().__init__()
         uic.loadUi(resource_path("ui/interviews.ui"), self)
-        # ------------------------------------------------------------
+
 
         self.is_admin = is_admin
         self.previous_window = previous_window
@@ -28,17 +26,12 @@ class InterviewsWindow(QtWidgets.QMainWindow):
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.drag_position = QPoint()
-        
-        self.sheet_service = GoogleSheetsService()
-        self.interviews_config = GOOGLE_SHEETS[SheetName.INTERVIEW]
-
 
         # Fareyle sürüklemek için kullanılacak değişkenler
         self.drag_position = QPoint()
         self.resize_grip = QSizeGrip(self)
         self.resize_grip.setStyleSheet("background: transparent;")
         self.resize_grip.resize(16, 16)
-
 
         self.search_edit    = self.findChild(QtWidgets.QLineEdit,     "searchBoxLine")
         self.search_button  = self.findChild(QtWidgets.QPushButton,   "searchButton")
@@ -79,51 +72,52 @@ class InterviewsWindow(QtWidgets.QMainWindow):
         self.search_edit.returnPressed.connect(self.search_data)
         self.back_button.clicked.connect(self.go_back)
         self.exit_button.clicked.connect(self.close)
-
         self.sent_button.clicked.connect(self.filter_sent_projects)
         self.received_button.clicked.connect(self.filter_received_projects)
+     
 
 
         # Google Sheets servisini başlat, veriyi yükle
-        self.sheet_service = GoogleSheetsService()
-        self.sheet_config = GOOGLE_SHEETS[SheetName.INTERVIEW]
+        # self.sheet_service = GoogleSheetsService()
+        # self.sheet_config = GOOGLE_SHEETS[SheetName.INTERVIEW]
         self.load_data()
         
+    # def load_data(self):
+    #     data = self.sheet_service.read_data(
+    #         sheet_id=self.sheet_config["sheet_id"],
+    #         range_name=self.sheet_config["ranges"]
+    #     )
+    #     self.full_data = data
+    #     self.populate_table(data)
 
     def load_data(self):
-        data = self.sheet_service.read_data(
-            sheet_id=self.sheet_config["sheet_id"],
-            range_name=self.sheet_config["ranges"]
-        )
-        self.full_data = data
-        self.populate_table(data)
+        query = """
+        SELECT k.adsoyad, p.projegonderilistarihi, p.projegelistarihi 
+        FROM kursiyer k
+        JOIN projetakiptablosu p ON k.kursiyerid = p.kursiyerid   -- USING(kursiyerid)
+        """
+        data = get_data_list(query)
+        headers = ["Ad Soyad", "Proje Gönderiliş Tarihi", "Proje Geliş Tarihi"]
+        self.full_data = [headers] + data
+        self.populate_table(self.full_data)
+     
 
+    # tablo başlıkları
     def populate_table(self, data: list):
         self.interview_table.setRowCount(0)
+        headers = data[0]
+        self.interview_table.setColumnCount(len(headers))
+        self.interview_table.setHorizontalHeaderLabels(headers)
 
         if not data:
             self.interview_table.setColumnCount(0)
             return
-
-        # headers = data[0]
-        # self.interview_table.setColumnCount(len(headers))
-        # self.interview_table.setHorizontalHeaderLabels(headers)
-
+        
         for row_idx, row in enumerate(data[1:]):
             self.interview_table.insertRow(row_idx)
             for col_idx, value in enumerate(row):
-                item = QtWidgets.QTableWidgetItem(str(value))
+                item = QtWidgets.QTableWidgetItem(str(value) if value is not None else "")
                 self.interview_table.setItem(row_idx, col_idx, item)
-
-    # def search_data(self):
-    #     keyword = self.search_edit.text().lower()
-    #     headers = self.full_data[0]
-    #     name_column_index = 0  # isim ve soyisimin bulundugu indeks
-    #     filtered = [
-    #         row for row in self.full_data[1:]
-    #         if name_column_index < len(row) and row[name_column_index].lower().startswith(keyword)
-    #     ]
-    #     self.populate_table([headers] + filtered if filtered else [headers])
 
 
     def search_data(self):
@@ -152,57 +146,36 @@ class InterviewsWindow(QtWidgets.QMainWindow):
             self.previous_window.activateWindow()
         self.close()
         
-        # if self.is_admin:
-        #     from views.preferences_admin import AdminPreferencesWindow
-        #     self.window = AdminPreferencesWindow()
-        # else:
-        #     from views.preferences import UserPreferencesWindow
-        #     self.window = UserPreferencesWindow()
-        # self.window.show()
-        # self.close()
-
-    # Fare ile pencereyi sürüklemek için:
-    def mousePressEvent(self, event):
-        if event.button() == Qt.MouseButton.LeftButton:
-            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
-            event.accept()
-
-    def mouseMoveEvent(self, event):
-        if event.buttons() == Qt.MouseButton.LeftButton:
-            self.move(event.globalPosition().toPoint() - self.drag_position)
-            event.accept()
-
-    def mouseReleaseEvent(self, event):
-        self.drag_position = None
-
-    def filter_sent_projects(self):
+       
+    def filter_sent_projects(self): #proje gonderilis tarihi olan satirlari filtreler
         if not hasattr(self, "full_data") or not self.full_data:
             return
 
         headers = self.full_data[0]
         data = self.full_data[1:]
         try:
-            idx = headers.index("Proje gonderilis tarihi")
+            idx = headers.index("Proje Gönderiliş Tarihi")
         except ValueError:
-            print("Sütun bulunamadı: Proje gonderilis tarihi")
+            print("Sütun bulunamadı: Proje Gönderiliş Tarihi")
             return
 
-        filtered = [row for row in data if idx < len(row) and row[idx].strip()]
+        filtered = [row for row in data if idx < len(row) and row[idx] and str(row[idx]).strip()]
+
         self.populate_table([headers] + filtered if filtered else [headers])
 
-    def filter_received_projects(self):
+    def filter_received_projects(self):  # proje geliş tarihi olan satırları filtreler
         if not hasattr(self, "full_data") or not self.full_data:
             return
 
         headers = self.full_data[0]
         data = self.full_data[1:]
         try:
-            idx = headers.index("Projenin gelis tarihi")
+            idx = headers.index("Proje Geliş Tarihi")
         except ValueError:
-            print("Sütun bulunamadı: Projenin gelis tarihi")
+            print("Sütun bulunamadı: Proje Geliş Tarihi")
             return
 
-        filtered = [row for row in data if idx < len(row) and row[idx].strip()]
+        filtered = [row for row in data if idx < len(row) and row[idx] and str(row[idx]).strip()]
         self.populate_table([headers] + filtered if filtered else [headers])
         
     # Pencereyi mouse ile taşıma fonksiyonları
