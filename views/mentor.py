@@ -16,7 +16,7 @@ def resource_path(relative_path):
 class MentorWindow(QtWidgets.QMainWindow):
     def __init__(self, is_admin=False, previous_window=None):
         super().__init__()
-        uic.loadUi(resource_path("ui/mentor.uii"), self)
+        uic.loadUi(resource_path("ui/mentor.ui"), self)
         self.is_admin = is_admin
         self.previous_window = previous_window
 
