@@ -74,9 +74,7 @@ class InterviewsWindow(QtWidgets.QMainWindow):
         self.exit_button.clicked.connect(self.close)
         self.sent_button.clicked.connect(self.filter_sent_projects)
         self.received_button.clicked.connect(self.filter_received_projects)
-     
-
-
+    
         # Google Sheets servisini başlat, veriyi yükle
         # self.sheet_service = GoogleSheetsService()
         # self.sheet_config = GOOGLE_SHEETS[SheetName.INTERVIEW]
@@ -92,8 +90,8 @@ class InterviewsWindow(QtWidgets.QMainWindow):
 
     def load_data(self):
         query = """
-        SELECT k.adsoyad, p.projegonderilistarihi, p.projegelistarihi 
-        FROM kursiyer k
+        SELECT k.adsoyad, p.projegonderilistarihi, p.projeningelistarihi 
+        FROM kursiyerler k
         JOIN projetakiptablosu p ON k.kursiyerid = p.kursiyerid   -- USING(kursiyerid)
         """
         data = get_data_list(query)
